@@ -13,6 +13,7 @@ public interface Drug {
  
     public abstract String getName();
     public abstract int getPrice();
+    public abstract int getAmount();
     public abstract void setPrice(int price);
     
 }
