@@ -9,7 +9,7 @@ import model.*;
 import model.drug.*;
 
 /**
- *
+ * Denne klasser styrer spillets gang.
  * @author CHRIS
  */
 public class Main {
