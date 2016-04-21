@@ -10,6 +10,7 @@ import model.drug.*;
 
 /**
  * Denne klasser styrer spillets gang.
+ * Og denne tekst er en final test.
  * @author CHRIS
  */
 public class Main {
