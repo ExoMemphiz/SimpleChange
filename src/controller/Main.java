@@ -18,6 +18,7 @@ public class Main {
         Player player = new Player("Peter the Gangster", 5000);
         Drug acid = new Acid(180, 2);
         player.addDrug(acid);
+        
     }
     
 }
