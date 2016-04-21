@@ -7,6 +7,7 @@ package model;
 
 import java.util.ArrayList;
 import model.*;
+import model.country.Denmark;
 
 /**
  *
@@ -14,14 +15,17 @@ import model.*;
  */
 public class Player {
  
+    private int currentTurn = 0;
     private String name;
     private int money;
     private ArrayList<Drug> drugs;
+    private Country currentCountry;
 
     public Player(String name, int money) {
         this.name = name;
         this.money = money;
         drugs = new ArrayList<>();
+        currentCountry = new Denmark(this);
     }
     
     public int getMoney() {
@@ -30,6 +34,10 @@ public class Player {
     
     public String getName() {
         return name;
+    }
+    
+    public int getTurn() {
+        return currentTurn;
     }
     
     public ArrayList<Drug> getDrugs() {

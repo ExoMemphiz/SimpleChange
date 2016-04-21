@@ -40,4 +40,14 @@ public class Amphetamine implements Drug {
         return amount;
     }
     
+    @Override
+    public void remove(int amount) {
+        this.amount -= amount;
+    }
+        
+    @Override
+    public void add(int amount) {
+        this.amount += amount;
+    }
+    
 }
