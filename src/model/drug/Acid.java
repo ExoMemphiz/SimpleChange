@@ -23,7 +23,7 @@ public class Acid implements Drug {
     
     @Override
     public String getName() {
-        return "Heroin";
+        return "Acid";
     }
 
     @Override

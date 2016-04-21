@@ -26,19 +26,21 @@ public class USA implements Country {
     
     public void init() {
         r = new Random();
-        drugs = new ArrayList<>();
-        Cocaine cocaine = new Cocaine(1200, 30);
-        Heroin heroin = new Heroin(1600, 15);
-        Amphetamine amphetamine = new Amphetamine(200, 50);
-        Acid acid = new Acid(550, 33);
-        AngelDust angelDust = new AngelDust(400, 60);
-        CrystalMeth crystalMeth = new CrystalMeth(800, 38);
-        drugs.add(cocaine);
-        drugs.add(heroin);
-        drugs.add(amphetamine);
-        drugs.add(acid);
-        drugs.add(angelDust);
-        drugs.add(crystalMeth);
+        if (drugs == null) {
+            drugs = new ArrayList<>();
+            Cocaine cocaine = new Cocaine(1200, 30);
+            Heroin heroin = new Heroin(1600, 15);
+            Amphetamine amphetamine = new Amphetamine(200, 50);
+            Acid acid = new Acid(550, 33);
+            AngelDust angelDust = new AngelDust(400, 60);
+            CrystalMeth crystalMeth = new CrystalMeth(800, 38);
+            drugs.add(cocaine);
+            drugs.add(heroin);
+            drugs.add(amphetamine);
+            drugs.add(acid);
+            drugs.add(angelDust);
+            drugs.add(crystalMeth);
+        }
         if (player != null && player.getTurn() != 0) {
             rollPrices();
             rollStock();
@@ -47,6 +49,11 @@ public class USA implements Country {
         
     public void setPlayer(Player player) {
         this.player = player;
+        init();
+    }
+    
+    public ArrayList<Drug> getDrugs() {
+        return drugs;
     }
     
     public Drug getDrug(String drugName) {

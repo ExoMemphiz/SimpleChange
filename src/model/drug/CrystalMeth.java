@@ -22,7 +22,7 @@ public class CrystalMeth implements Drug {
     
     @Override
     public String getName() {
-        return "Heroin";
+        return "Crystal Meth";
     }
 
     @Override

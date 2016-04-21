@@ -22,7 +22,7 @@ public class Cocaine implements Drug {
     
     @Override
     public String getName() {
-        return "Heroin";
+        return "Cocaine";
     }
 
     @Override

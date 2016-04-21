@@ -22,7 +22,7 @@ public class Amphetamine implements Drug {
     
     @Override
     public String getName() {
-        return "Heroin";
+        return "Amphetamine";
     }
 
     @Override

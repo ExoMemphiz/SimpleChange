@@ -19,13 +19,11 @@ public class Player {
     private String name;
     private int money;
     private ArrayList<Drug> drugs;
-    private Country currentCountry;
 
     public Player(String name, int money) {
         this.name = name;
         this.money = money;
         drugs = new ArrayList<>();
-        currentCountry = new Denmark();
     }
     
     public int getMoney() {
@@ -50,6 +48,10 @@ public class Player {
     
     public void sellDrug(Drug drug) {
         
+    }
+    
+    public void advanceTurn() {
+        currentTurn++;
     }
     
 }

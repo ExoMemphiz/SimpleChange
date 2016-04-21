@@ -14,6 +14,8 @@ import java.util.ArrayList;
 public interface Country {
     
     public abstract void init();
+    public abstract void setPlayer(Player player);
+    public abstract ArrayList<Drug> getDrugs();
     public abstract Drug getDrug(String drugName);
     public abstract int getPrice(String drugName, int amount);
     public abstract boolean buyDrug(String drugName, int amount, int playerMoney) throws Exception;

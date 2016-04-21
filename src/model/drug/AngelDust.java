@@ -22,7 +22,7 @@ public class AngelDust implements Drug {
     
     @Override
     public String getName() {
-        return "Heroin";
+        return "Angel Dust";
     }
 
     @Override
