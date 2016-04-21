@@ -25,7 +25,7 @@ public class Player {
         this.name = name;
         this.money = money;
         drugs = new ArrayList<>();
-        currentCountry = new Denmark(this);
+        currentCountry = new Denmark();
     }
     
     public int getMoney() {

@@ -5,7 +5,9 @@
  */
 package controller;
 
+import java.util.ArrayList;
 import model.*;
+import model.country.Afghanistan;
 import model.drug.*;
 
 /**
@@ -15,10 +17,19 @@ import model.drug.*;
  */
 public class Main {
  
-    public static void main(String[] args) {
+    ArrayList<Country> countries;
+    ArrayList<Drug> drugs;
+    ArrayList<Event> events;
+
+    public Main() {
         Player player = new Player("Peter the Gangster", 5000);
-        Drug acid = new Acid(180, 2);
-        player.addDrug(acid);
+        
+        
+    }
+    
+    
+    
+    public static void main(String[] args) {
         
     }
     

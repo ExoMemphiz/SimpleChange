@@ -20,8 +20,7 @@ public class Germany implements Country {
     ArrayList<Drug> drugs;
     Random r;
     
-    public Germany(Player player) {
-        this.player = player;
+    public Germany() {
         init();
     }
     
@@ -40,10 +39,14 @@ public class Germany implements Country {
         drugs.add(acid);
         drugs.add(angelDust);
         drugs.add(crystalMeth);
-        if (player.getTurn() != 0) {
+        if (player != null && player.getTurn() != 0) {
             rollPrices();
             rollStock();
         }
+    }
+        
+    public void setPlayer(Player player) {
+        this.player = player;
     }
     
     public Drug getDrug(String drugName) {
