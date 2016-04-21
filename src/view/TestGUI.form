@@ -75,17 +75,27 @@
                               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                               <Component id="jLabelCurrentMoney" max="32767" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jSliderBuyDrugs" pref="0" max="32767" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jSlider2" pref="0" max="32767" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jSliderBuyDrugs" pref="0" max="32767" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                                      <Component id="jButtonBuyDrugs" min="-2" pref="163" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                                      <Component id="jButtonSellDrugs" min="-2" pref="163" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="jSliderSellDrugs" min="-2" pref="181" max="-2" attributes="0"/>
+                              </Group>
                               <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                              <Component id="jButtonBuyDrugs" min="-2" pref="163" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -110,12 +120,15 @@
                           <Component id="jComboBoxSellingDrugs" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jSliderBuyDrugs" min="-2" max="-2" attributes="0"/>
-                          <Component id="jSlider2" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jSliderSellDrugs" max="32767" attributes="0"/>
+                          <Component id="jSliderBuyDrugs" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jButtonBuyDrugs" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jButtonBuyDrugs" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonSellDrugs" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -172,6 +185,9 @@
                   </StringArray>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jComboBoxSellingDrugsItemStateChanged"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
@@ -199,7 +215,21 @@
                 <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jSliderBuyDrugsStateChanged"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JSlider" name="jSlider2">
+            <Component class="javax.swing.JSlider" name="jSliderSellDrugs">
+              <Properties>
+                <Property name="majorTickSpacing" type="int" value="10"/>
+                <Property name="maximum" type="int" value="60"/>
+                <Property name="paintLabels" type="boolean" value="true"/>
+                <Property name="paintTicks" type="boolean" value="true"/>
+              </Properties>
+              <Events>
+                <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jSliderSellDrugsStateChanged"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButtonSellDrugs">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Sell drugs (0)"/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>

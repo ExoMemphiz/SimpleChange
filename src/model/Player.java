@@ -38,6 +38,15 @@ public class Player {
         return currentTurn;
     }
     
+    public Drug getDrug(String drugName) {
+        for (Drug d : drugs) {
+            if (d.getName().equals(drugName)) {
+                return d;
+            }
+        }
+        return null;
+    }
+    
     public ArrayList<Drug> getDrugs() {
         return drugs;
     }

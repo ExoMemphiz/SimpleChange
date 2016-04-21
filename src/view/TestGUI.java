@@ -79,6 +79,11 @@ public class TestGUI extends javax.swing.JFrame {
         return selected.substring(0, selected.indexOf("-") - 1);
     }
     
+    public String getSelectedSellingDrugName() {
+        String selected = jComboBoxSellingDrugs.getSelectedItem().toString();
+        return selected.substring(0, selected.indexOf("-") - 1);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -98,7 +103,8 @@ public class TestGUI extends javax.swing.JFrame {
         jLabelCurrentMoney = new javax.swing.JLabel();
         jButtonBuyDrugs = new javax.swing.JButton();
         jSliderBuyDrugs = new javax.swing.JSlider();
-        jSlider2 = new javax.swing.JSlider();
+        jSliderSellDrugs = new javax.swing.JSlider();
+        jButtonSellDrugs = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
 
@@ -122,6 +128,11 @@ public class TestGUI extends javax.swing.JFrame {
         });
 
         jComboBoxSellingDrugs.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxSellingDrugs.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxSellingDrugsItemStateChanged(evt);
+            }
+        });
 
         jLabelCurrentMoney.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelCurrentMoney.setText("Current money:");
@@ -138,6 +149,18 @@ public class TestGUI extends javax.swing.JFrame {
                 jSliderBuyDrugsStateChanged(evt);
             }
         });
+
+        jSliderSellDrugs.setMajorTickSpacing(10);
+        jSliderSellDrugs.setMaximum(60);
+        jSliderSellDrugs.setPaintLabels(true);
+        jSliderSellDrugs.setPaintTicks(true);
+        jSliderSellDrugs.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSliderSellDrugsStateChanged(evt);
+            }
+        });
+
+        jButtonSellDrugs.setText("Sell drugs (0)");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -162,16 +185,22 @@ public class TestGUI extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addComponent(jLabelCurrentMoney, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jSliderBuyDrugs, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jSlider2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addGap(4, 4, 4))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jButtonBuyDrugs, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jSliderBuyDrugs, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addComponent(jButtonBuyDrugs, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jButtonSellDrugs, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jSliderSellDrugs, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(4, 4, 4)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -190,11 +219,13 @@ public class TestGUI extends javax.swing.JFrame {
                     .addComponent(jComboBoxBuyingDrugs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBoxSellingDrugs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSliderBuyDrugs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSlider2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jSliderSellDrugs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jSliderBuyDrugs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonBuyDrugs)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonBuyDrugs)
+                    .addComponent(jButtonSellDrugs))
                 .addGap(58, 58, 58))
         );
 
@@ -252,8 +283,20 @@ public class TestGUI extends javax.swing.JFrame {
         jSliderBuyDrugs.setMaximum(amount);
     }//GEN-LAST:event_jComboBoxBuyingDrugsItemStateChanged
 
+    private void jComboBoxSellingDrugsItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxSellingDrugsItemStateChanged
+        System.out.println("[jComboBoxSellingDrugsPropertyChange] Changed to item: " + getSelectedSellingDrugName());
+        Drug d = main.getPlayer().getDrug(getSelectedSellingDrugName());
+        int amount = d.getAmount();
+        jSliderSellDrugs.setMaximum(amount);
+    }//GEN-LAST:event_jComboBoxSellingDrugsItemStateChanged
+
+    private void jSliderSellDrugsStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSliderSellDrugsStateChanged
+        jButtonSellDrugs.setText("Sell drugs (" + jSliderSellDrugs.getValue() + ")");
+    }//GEN-LAST:event_jSliderSellDrugsStateChanged
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBuyDrugs;
+    private javax.swing.JButton jButtonSellDrugs;
     private javax.swing.JComboBox<String> jComboBoxBuyingDrugs;
     private javax.swing.JComboBox<String> jComboBoxSellingDrugs;
     private javax.swing.JLabel jLabel1;
@@ -263,8 +306,8 @@ public class TestGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JSlider jSlider2;
     private javax.swing.JSlider jSliderBuyDrugs;
+    private javax.swing.JSlider jSliderSellDrugs;
     private javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables
 }
