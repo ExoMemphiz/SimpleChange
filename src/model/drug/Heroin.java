@@ -13,10 +13,11 @@ import model.*;
  */
 public class Heroin implements Drug {
 
-    int price;
+    int price, amount;
 
-    public Heroin(int price) {
+    public Heroin(int price, int amount) {
         this.price = price;
+        this.amount = amount;
     }
     
     @Override
@@ -32,6 +33,11 @@ public class Heroin implements Drug {
     @Override
     public void setPrice(int price) {
         this.price = price;
+    }
+    
+    @Override
+    public int getAmount() {
+        return amount;
     }
     
 }

@@ -13,10 +13,11 @@ import model.*;
  */
 public class CrystalMeth implements Drug {
 
-    int price;
+    int price, amount;
 
-    public CrystalMeth(int price) {
+    public CrystalMeth(int price, int amount) {
         this.price = price;
+        this.amount = amount;
     }
     
     @Override
@@ -32,6 +33,11 @@ public class CrystalMeth implements Drug {
     @Override
     public void setPrice(int price) {
         this.price = price;
+    }
+    
+    @Override
+    public int getAmount() {
+        return amount;
     }
     
 }

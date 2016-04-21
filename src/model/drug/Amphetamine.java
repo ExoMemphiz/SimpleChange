@@ -13,10 +13,11 @@ import model.Drug;
  */
 public class Amphetamine implements Drug {
 
-    int price;
+    int price, amount;
 
-    public Amphetamine(int price) {
+    public Amphetamine(int price, int amount) {
         this.price = price;
+        this.amount = amount;
     }
     
     @Override
@@ -32,6 +33,11 @@ public class Amphetamine implements Drug {
     @Override
     public void setPrice(int price) {
         this.price = price;
+    }
+    
+    @Override
+    public int getAmount() {
+        return amount;
     }
     
 }

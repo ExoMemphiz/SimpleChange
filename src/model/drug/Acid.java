@@ -14,9 +14,11 @@ import model.Drug;
 public class Acid implements Drug {
 
     int price;
+    int amount;
 
-    public Acid(int price) {
+    public Acid(int price, int amount) {
         this.price = price;
+        this.amount = amount;
     }
     
     @Override
@@ -32,6 +34,11 @@ public class Acid implements Drug {
     @Override
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    @Override
+    public int getAmount() {
+        return amount;
     }
     
 }
