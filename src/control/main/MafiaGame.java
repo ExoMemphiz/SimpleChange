@@ -121,6 +121,5 @@ public class MafiaGame implements MafiaGameInterface {
         }
         return model;
     }
-    }
     
 }
