@@ -134,23 +134,22 @@ public class MafiaGame {
      * @return String status of buying result
      */
     public String buyDrugFromCurrentCountryToPlayer(String selectedBuyingDrugName, int selectedBuyingDrugAmount) {
-        CountryInterface country = getCurrentCountry();
         String resultMessage = "You have now bought you drug, get ready to sell";
         
         //Removes the drug amount from country
         try {
-            country.buyDrug(selectedBuyingDrugName, selectedBuyingDrugAmount, getPlayer().getMoney() );
+            currentCountry.buyDrug(selectedBuyingDrugName, selectedBuyingDrugAmount, getPlayer().getMoney() );
         } catch (Exception e) {
             resultMessage = e.getMessage();
         }
         
         DrugInterface playerNewDrug;
         
-        ??
-                
+        
+        
         playerNewDrug.setAmount(selectedBuyingDrugAmount);
         
-        getPlayer().addDrug(playerNewDrug);
+        player.addDrug(playerNewDrug);
         
         
         return resultMessage;
