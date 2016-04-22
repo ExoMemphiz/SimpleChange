@@ -16,37 +16,27 @@ public class BaseDrug implements DrugInterface {
     int price;
     int amount;
 
-    public BaseDrug(int price, int amount, String drugName) {
+    public BaseDrug(int price, int amount) {
         this.price = price;
         this.amount = amount;
+    }
+    
+    public BaseDrug getNewBaseDrug(String drugName) {
         switch (drugName) {
-            case 1:  monthString = "January";
-                     break;
-            case 2:  monthString = "February";
-                     break;
-            case 3:  monthString = "March";
-                     break;
-            case 4:  monthString = "April";
-                     break;
-            case 5:  monthString = "May";
-                     break;
-            case 6:  monthString = "June";
-                     break;
-            case 7:  monthString = "July";
-                     break;
-            case 8:  monthString = "August";
-                     break;
-            case 9:  monthString = "September";
-                     break;
-            case 10: monthString = "October";
-                     break;
-            case 11: monthString = "November";
-                     break;
-            case 12: monthString = "December";
-                     break;
-            default: monthString = "Invalid month";
-                     break;
+            case "Acid": 
+                return new Acid(price, amount);
+            case "Amphetamine": 
+                return new Amphetamine(price, amount);
+            case "Angel Dust": 
+                return new AngelDust(price, amount);
+            case "Cocaine": 
+                return new Cocaine(price, amount);
+            case "Crystal Meth": 
+                return new CrystalMeth(price, amount);
+            case "Heroin": 
+                return new Heroin(price, amount);
         }
+        return null;
     }
     
     
@@ -79,4 +69,10 @@ public class BaseDrug implements DrugInterface {
     public void setAmount(int newAmount) {
         this.amount = newAmount;
     }
+
+    @Override
+    public String getName() {
+        return "null";
+    }
+    
 }

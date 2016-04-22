@@ -16,5 +16,11 @@ public class Afghanistan extends BaseCountry {
         init();
     }
 
+    @Override
+    public String getName() {
+        return "Afghanistan";
+    }
+
+    
     
 }

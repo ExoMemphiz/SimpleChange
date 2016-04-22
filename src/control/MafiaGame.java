@@ -23,8 +23,9 @@ import javax.swing.DefaultComboBoxModel;
 public class MafiaGame {
  
     private Player player;
-    private CountryInterface currentCountry;
-    private ArrayList<CountryInterface> countries;
+    private int currentTurn = 0;
+    private BaseCountry currentCountry;
+    private ArrayList<BaseCountry> countries;
     private ArrayList<EventInterface> events;
     
     public static void main(String[] args) {
@@ -34,7 +35,7 @@ public class MafiaGame {
     public MafiaGame() {
         initCountries();
         player = new Player("Peter the Gangster", 5000);
-        CountryInterface denmark = getCountry("Denmark");
+        BaseCountry denmark = getCountry("Denmark");
         setCountry(denmark);
         MafiaGameWindow mafiaGameGui = new MafiaGameWindow(this);
     }
@@ -49,20 +50,35 @@ public class MafiaGame {
         countries.add(new USA());
     }
     
-    public void setCountry(CountryInterface country) {
+    public void Travel(BaseCountry country) {     //TODO! Missing calling all events and other triggers upon travel!
+        
+        advanceTurn();  //Important to do in this order, or Countries will not update their stock and prices
+        setCountry(country);
+    }
+    
+    public void setCountry(BaseCountry country) {
         currentCountry = country;
         country.setPlayer(player);
     }
     
-    public CountryInterface getCurrentCountry() {
+    public BaseCountry getCurrentCountry() {
         return currentCountry;
+    }
+    
+    public int getTurn() {
+        return currentTurn;
+    }
+    
+    public void advanceTurn() {
+        currentTurn++;
+        player.advanceTurn();
     }
     
     public Player getPlayer() {
         return player;
     }
     
-    public ArrayList<CountryInterface> getCountries() {
+    public ArrayList<BaseCountry> getCountries() {
         return countries;
     }
     
@@ -70,8 +86,8 @@ public class MafiaGame {
         return events;
     }
     
-    public CountryInterface getCountry(String name) {
-        for (CountryInterface c : countries) {
+    public BaseCountry getCountry(String name) {
+        for (BaseCountry c : countries) {
             String countryName = c.getClass().toString().replaceAll("class model.country.", "");
             if (countryName.equals(name)) {
                 return c;
@@ -80,44 +96,13 @@ public class MafiaGame {
         return null;
     }
 
-    public DefaultComboBoxModel getBuyDrugListAsComboBoxModel() {
-        DefaultComboBoxModel model = new DefaultComboBoxModel();
-        model.removeAllElements();
-        CountryInterface country = getCurrentCountry();
-        ArrayList<DrugInterface> drugs = country.getDrugs();
-        for (int i = 0; i < drugs.size(); i++) {
-            DrugInterface d = drugs.get(i);
-            if (d.getAmount() > 0) {
-                model.addElement(d.getName() + " - " + d.getPrice());
-            }
-        }
-        return model;
-    }
-
-    public DefaultComboBoxModel getSellDrugListAsComboBoxModel() {
-        DefaultComboBoxModel model = new DefaultComboBoxModel();
-        model.removeAllElements();
-        Player player = getPlayer();
-        ArrayList<DrugInterface> playerDrugs = player.getDrugs();
-        CountryInterface country = getCurrentCountry();
-        ArrayList<DrugInterface> countryDrugs = country.getDrugs();
-        for (int i = 0; i < playerDrugs.size(); i++) {
-            DrugInterface d = playerDrugs.get(i);
-            for (DrugInterface cDrug : countryDrugs) {
-                if (d.getName().equals(cDrug.getName())) {
-                    if (d.getAmount() > 0) {
-                        model.addElement(d.getName() + " - " + cDrug.getPrice());
-                    }
-                }
-            }
-        }
-        return model;
-    }
-
     public int getPlayerCurrentDrugAmount(String selectedSellingDrugName) {
-        DrugInterface drug = getPlayer().getDrug( selectedSellingDrugName );
-        int amount = drug.getAmount();
-        return amount;
+        DrugInterface drug = getPlayer().getDrug(selectedSellingDrugName);
+        if (drug != null) {
+            int amount = drug.getAmount();
+            return amount;
+        }
+        return 0;
     }
 
     public int getCountryCurrentDrugAmount(String selectedBuyingDrugName) {
@@ -133,26 +118,16 @@ public class MafiaGame {
      * @param selectedBuyingDrugAmount
      * @return String status of buying result
      */
-    public String buyDrugFromCurrentCountryToPlayer(String selectedBuyingDrugName, int selectedBuyingDrugAmount) {
-        String resultMessage = "You have now bought you drug, get ready to sell";
-        
-        //Removes the drug amount from country
-        try {
-            currentCountry.buyDrug(selectedBuyingDrugName, selectedBuyingDrugAmount, getPlayer().getMoney() );
-        } catch (Exception e) {
-            resultMessage = e.getMessage();
-        }
-        
-        DrugInterface playerNewDrug;
-        
-        
-        
-        playerNewDrug.setAmount(selectedBuyingDrugAmount);
-        
-        player.addDrug(playerNewDrug);
-        
-        
-        return resultMessage;
+    public void buyDrug(String drugName, int drugAmount, int price) throws Exception {
+        currentCountry.buyDrug(drugName, drugAmount, player.getMoney());
+        BaseDrug newPlayerDrug = new BaseDrug(0, drugAmount).getNewBaseDrug(drugName);
+        player.buyDrug(newPlayerDrug, price);
+    }
+    
+    public void sellDrug(String drugName, int drugAmount) throws Exception {
+        int price = currentCountry.sellStock(drugName, drugAmount);
+        BaseDrug newPlayerDrug = new BaseDrug(0, drugAmount).getNewBaseDrug(drugName);
+        player.sellDrug(newPlayerDrug, drugAmount, price);
     }
     
 }

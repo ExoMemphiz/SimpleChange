@@ -10,7 +10,11 @@ import model.Player;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import model.CountryInterface;
+import model.DrugInterface;
+import model.country.BaseCountry;
 
 /**
  *
@@ -32,9 +36,10 @@ public class MafiaGameWindow extends javax.swing.JFrame {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception ex){}
         setVisible(true);
-        jComboBoxBuyingDrugs.setModel( mainGame.getBuyDrugListAsComboBoxModel() );
-        jComboBoxSellingDrugs.setModel( mainGame.getSellDrugListAsComboBoxModel() );
-        jLabelCurrentMoney.setText("Current money: $" + mainGame.getPlayer().getMoney() );
+        updateModelBoxes();
+        jSliderBuyDrugs.setValue(0);
+        jSliderSellDrugs.setValue(0);
+        jSliderSellDrugs.setMaximum(0);
     }
     
     /**
@@ -60,8 +65,12 @@ public class MafiaGameWindow extends javax.swing.JFrame {
      * @return String as Drugname
      */
     public String getSelectedSellingDrugName() {
-        String selected = jComboBoxSellingDrugs.getSelectedItem().toString();
-        return selected.substring(0, selected.indexOf("-") - 1);
+        Object object = jComboBoxSellingDrugs.getSelectedItem();
+        if (object != null) {
+            String selected = object.toString();
+            return selected.substring(0, selected.indexOf("-") - 1);
+        }
+        return "null";
     }
     
     /**
@@ -72,7 +81,66 @@ public class MafiaGameWindow extends javax.swing.JFrame {
         int selectedAmount = jSliderSellDrugs.getValue();
         return selectedAmount;
     }
+    
+    public void updateModelBoxes() {
+        jComboBoxBuyingDrugs.setModel(getBuyDrugModel());
+        jComboBoxSellingDrugs.setModel(getSellDrugModel());
+        jLabelCurrentMoney.setText("Current money: $" + mainGame.getPlayer().getMoney());
+        int amount = mainGame.getPlayerCurrentDrugAmount(getSelectedSellingDrugName());
+        jSliderSellDrugs.setMaximum(amount);
+        jLabelWelcomeText.setText("Welcome to " + mainGame.getCurrentCountry().getName() + "!");
+        jComboBoxCountries.setModel(getTravelModel());
+    }
 
+    public DefaultComboBoxModel getSellDrugModel() {
+        DefaultComboBoxModel model = new DefaultComboBoxModel();
+        model.removeAllElements();
+        Player player = mainGame.getPlayer();
+        ArrayList<DrugInterface> playerDrugs = player.getDrugs();
+        CountryInterface country = mainGame.getCurrentCountry();
+        ArrayList<DrugInterface> countryDrugs = country.getDrugs();
+        for (int i = 0; i < playerDrugs.size(); i++) {
+            DrugInterface d = playerDrugs.get(i);
+            for (DrugInterface cDrug : countryDrugs) {
+                if (d.getName().equals(cDrug.getName())) {
+                    if (d.getAmount() > 0) {
+                        model.addElement(d.getName() + " - " + cDrug.getPrice());
+                    }
+                }
+            }
+        }
+        return model;
+    }
+    
+    
+    public DefaultComboBoxModel getBuyDrugModel() {
+        DefaultComboBoxModel model = new DefaultComboBoxModel();
+        model.removeAllElements();
+        CountryInterface country = mainGame.getCurrentCountry();
+        ArrayList<DrugInterface> drugs = country.getDrugs();
+        for (int i = 0; i < drugs.size(); i++) {
+            DrugInterface d = drugs.get(i);
+            if (d.getAmount() > 0) {
+                model.addElement(d.getName() + " - " + d.getPrice());
+            }
+        }
+        return model;
+    }
+    
+    public DefaultComboBoxModel getTravelModel() {
+        DefaultComboBoxModel model = new DefaultComboBoxModel();
+        model.removeAllElements();
+        BaseCountry country = mainGame.getCurrentCountry();
+        System.out.println("[getTravelModel]: " + country.getName());
+        ArrayList<BaseCountry> countries = mainGame.getCountries();
+        for (int i = 0; i < countries.size(); i++) {
+            BaseCountry c = countries.get(i);
+            if (!c.getName().equals(country.getName())) {
+                model.addElement(c.getName());
+            }
+        }
+        return model;
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -85,7 +153,7 @@ public class MafiaGameWindow extends javax.swing.JFrame {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jLabelWelcomeText = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jComboBoxBuyingDrugs = new javax.swing.JComboBox<>();
@@ -95,16 +163,18 @@ public class MafiaGameWindow extends javax.swing.JFrame {
         jSliderBuyDrugs = new javax.swing.JSlider();
         jSliderSellDrugs = new javax.swing.JSlider();
         jButtonSellDrugs = new javax.swing.JButton();
+        jButtonUpdatePlayerInventoryTest = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jComboBoxCountries = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
+        jButtonTravel = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Welcome to Denmark!");
+        jLabelWelcomeText.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
+        jLabelWelcomeText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelWelcomeText.setText("Welcome to Denmark!");
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Buy drugs");
@@ -164,6 +234,13 @@ public class MafiaGameWindow extends javax.swing.JFrame {
             }
         });
 
+        jButtonUpdatePlayerInventoryTest.setText("Force Update Models & Player Info");
+        jButtonUpdatePlayerInventoryTest.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonUpdatePlayerInventoryTestActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -173,11 +250,11 @@ public class MafiaGameWindow extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabelWelcomeText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addGap(0, 7, Short.MAX_VALUE)
                                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jComboBoxBuyingDrugs, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -202,14 +279,17 @@ public class MafiaGameWindow extends javax.swing.JFrame {
                                 .addGap(10, 10, 10)
                                 .addComponent(jButtonSellDrugs, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jSliderSellDrugs, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(4, 4, 4)))
+                        .addGap(4, 4, 4))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButtonUpdatePlayerInventoryTest)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabelWelcomeText, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15)
                 .addComponent(jLabelCurrentMoney)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -228,7 +308,9 @@ public class MafiaGameWindow extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonBuyDrugs)
                     .addComponent(jButtonSellDrugs))
-                .addGap(58, 58, 58))
+                .addGap(24, 24, 24)
+                .addComponent(jButtonUpdatePlayerInventoryTest)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Drugs", jPanel1);
@@ -243,16 +325,29 @@ public class MafiaGameWindow extends javax.swing.JFrame {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Go to country");
 
+        jButtonTravel.setText("Travel");
+        jButtonTravel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonTravelActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBoxCountries, 0, 383, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jComboBoxCountries, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(105, 105, 105))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(158, 158, 158)
+                .addComponent(jButtonTravel, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -261,7 +356,9 @@ public class MafiaGameWindow extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jComboBoxCountries, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(240, Short.MAX_VALUE))
+                .addGap(39, 39, 39)
+                .addComponent(jButtonTravel)
+                .addContainerGap(178, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Travel", jPanel2);
@@ -299,13 +396,14 @@ public class MafiaGameWindow extends javax.swing.JFrame {
 
     private void jComboBoxBuyingDrugsItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxBuyingDrugsItemStateChanged
         System.out.println("[jComboBoxBuyingDrugsPropertyChange] Changed to item: " + getSelectedBuyingDrugName());
-        int amount = mainGame.getCountryCurrentDrugAmount( getSelectedBuyingDrugName() );
+        int amount = mainGame.getCountryCurrentDrugAmount(getSelectedBuyingDrugName());
         jSliderBuyDrugs.setMaximum(amount);
+        jSliderBuyDrugs.setValue(0);
     }//GEN-LAST:event_jComboBoxBuyingDrugsItemStateChanged
 
     private void jComboBoxSellingDrugsItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxSellingDrugsItemStateChanged
         System.out.println("[jComboBoxSellingDrugsPropertyChange] Changed to item: " + getSelectedSellingDrugName());
-        int amount = mainGame.getPlayerCurrentDrugAmount( getSelectedSellingDrugName() );
+        int amount = mainGame.getPlayerCurrentDrugAmount(getSelectedSellingDrugName());
         jSliderSellDrugs.setMaximum(amount);
     }//GEN-LAST:event_jComboBoxSellingDrugsItemStateChanged
 
@@ -318,24 +416,61 @@ public class MafiaGameWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxCountriesItemStateChanged
 
     private void jButtonBuyDrugsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuyDrugsActionPerformed
-        mainGame.buyDrugFromCurrentCountryToPlayer( getSelectedBuyingDrugName(), getSelectedBuyingDrugAmount() );
+        String drugName = getSelectedBuyingDrugName();
+        int amount = getSelectedBuyingDrugAmount();
+        if (amount > 0) {
+            int price = mainGame.getCurrentCountry().getDrug(drugName).getPrice();
+            try {
+                mainGame.buyDrug(drugName, amount, price);
+                updateModelBoxes();
+            } catch (Exception e) {
+                String msg = e.getMessage();
+                JOptionPane.showMessageDialog(null, msg);
+            }
+            
+        }
     }//GEN-LAST:event_jButtonBuyDrugsActionPerformed
 
     private void jButtonSellDrugsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSellDrugsActionPerformed
-        // TODO add your handling code here:
+        String drugName = getSelectedSellingDrugName();
+        int amount = getSelectedSellingDrugAmount();
+        if (!drugName.equals("null") && amount > 0) {
+            int price = mainGame.getCurrentCountry().getDrug(drugName).getPrice();
+            try {
+                mainGame.sellDrug(drugName, amount);
+                updateModelBoxes();
+            } catch (Exception e) {
+                String msg = e.getMessage();
+                JOptionPane.showMessageDialog(null, msg);
+            }
+            
+        }
     }//GEN-LAST:event_jButtonSellDrugsActionPerformed
+
+    private void jButtonUpdatePlayerInventoryTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdatePlayerInventoryTestActionPerformed
+        updateModelBoxes();
+    }//GEN-LAST:event_jButtonUpdatePlayerInventoryTestActionPerformed
+
+    private void jButtonTravelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTravelActionPerformed
+        String selectedCountry = jComboBoxCountries.getSelectedItem().toString();
+        BaseCountry country = mainGame.getCountry(selectedCountry);
+        mainGame.Travel(country);
+        updateModelBoxes();
+    }//GEN-LAST:event_jButtonTravelActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBuyDrugs;
     private javax.swing.JButton jButtonSellDrugs;
+    private javax.swing.JButton jButtonTravel;
+    private javax.swing.JButton jButtonUpdatePlayerInventoryTest;
     private javax.swing.JComboBox<String> jComboBoxBuyingDrugs;
     private javax.swing.JComboBox<String> jComboBoxCountries;
     private javax.swing.JComboBox<String> jComboBoxSellingDrugs;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabelCurrentMoney;
+    private javax.swing.JLabel jLabelWelcomeText;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

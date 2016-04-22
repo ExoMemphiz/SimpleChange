@@ -11,14 +11,10 @@ import model.DrugInterface;
  *
  * @author CHRIS
  */
-public class AngelDust implements DrugInterface {
-
-    int price;
-    int amount;
+public class AngelDust extends BaseDrug {
 
     public AngelDust(int price, int amount) {
-        this.price = price;
-        this.amount = amount;
+        super(price, amount);
     }
     
     @Override
@@ -26,5 +22,4 @@ public class AngelDust implements DrugInterface {
         return "Angel Dust";
     }
 
-    
 }

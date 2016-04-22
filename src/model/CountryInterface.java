@@ -14,6 +14,7 @@ import java.util.ArrayList;
 public interface CountryInterface {
     
     public abstract void init();
+    public abstract String getName();
     public abstract void setPlayer(Player player);
     public abstract ArrayList<DrugInterface> getDrugs();
     public abstract DrugInterface getDrug(String drugName);

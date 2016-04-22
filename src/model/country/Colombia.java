@@ -16,5 +16,10 @@ public class Colombia extends BaseCountry {
     public Colombia() {
         init();
     }
+
+    @Override
+    public String getName() {
+        return "Colombia";
+    }
     
 }

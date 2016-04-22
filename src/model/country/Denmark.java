@@ -16,5 +16,10 @@ public class Denmark extends BaseCountry {
     public Denmark() {
         init();
     }
+
+    @Override
+    public String getName() {
+        return "Denmark";
+    }
     
 }

@@ -51,15 +51,18 @@ public class Player {
         return drugs;
     }
     
-    public void addDrug(String name, int amount) {
-        
+    public void buyDrug(DrugInterface drug, int price) {
+        addDrug(drug);
+        money -= price;
     }
     
     public void addDrug(DrugInterface drug) {
         for (DrugInterface d : drugs) {
-            if (d.getName().equals(drug)) {
+            if (d.getName().equals(drug.getName())) {
                 d.add(drug.getAmount());
                 return;
+            } else {
+                System.out.println("[Player.addDrug()]: " + d.getName() + " != " + drug);
             }
         }
         drugs.add(drug);

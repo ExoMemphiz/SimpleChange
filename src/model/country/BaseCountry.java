@@ -16,7 +16,7 @@ import model.*;
  *
  * @author scheldejonas
  */
-public class BaseCountry implements CountryInterface  {
+public abstract class BaseCountry implements CountryInterface  {
     
     Player player;
     ArrayList<DrugInterface> drugs;
@@ -44,6 +44,8 @@ public class BaseCountry implements CountryInterface  {
             rollStock();
         }
     }
+    
+    public abstract String getName();
         
     public void setPlayer(Player player) {
         this.player = player;
