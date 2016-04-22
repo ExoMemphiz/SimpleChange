@@ -16,13 +16,14 @@ public class Player {
  
     private int currentTurn = 0;
     private final String name;
-    private int money;
+    private int money, health;
     private ArrayList<BaseDrug> drugs;
 
     public Player(String name, int money) {
         this.name = name;
         this.money = money;
         drugs = new ArrayList<>();
+        health = 100;
     }
     
     public int getMoney() {
@@ -82,6 +83,21 @@ public class Player {
     
     public void advanceTurn() {
         currentTurn++;
+    }
+    
+    public int getHealth() {
+        return health;
+    }
+    
+    public void takeDamage(int amount) {
+        health -= amount;
+    }
+    
+    public void healDamage(int amount) {
+        health += amount;
+        if (health > 100) {
+            health = 100;
+        }
     }
     
 }

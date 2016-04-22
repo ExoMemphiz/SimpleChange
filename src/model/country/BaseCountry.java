@@ -9,7 +9,6 @@ import model.Player;
 import java.util.ArrayList;
 import java.util.Random;
 import model.drug.*;
-import model.country.*;
 import model.*;
 
 /**
@@ -46,7 +45,7 @@ public abstract class BaseCountry implements CountryInterface  {
     }
     
     public abstract String getName();
-        
+    
     public void setPlayer(Player player) {
         this.player = player;
     }
@@ -108,7 +107,6 @@ public abstract class BaseCountry implements CountryInterface  {
     }
     
     public void rollPrices() {
-        System.out.println("Rolling prices for country: " + getName());
         for (int i = 0; i < drugs.size(); i++) {
             BaseDrug d = drugs.get(i);
             int randomNumber = r.nextInt(100);
@@ -119,9 +117,11 @@ public abstract class BaseCountry implements CountryInterface  {
                 int priceDifference = (currentPrice * priceChange) / 100;   //Find price difference
                 int newPrice = currentPrice + (increasePrice ? priceDifference : -priceDifference);
                 d.setPrice(newPrice);
+                /*
                 System.out.println((increasePrice ? "Increasing " : "Decreasing ") + d.getName() + " with " 
                                  + priceChange + "%, currentPrice: " + currentPrice + ", Price difference: " + 
                                    priceDifference + ", totaling: " + newPrice);
+                */
             }
         }
     }

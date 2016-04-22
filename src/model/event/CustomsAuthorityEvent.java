@@ -6,6 +6,7 @@
 package model.event;
 
 import java.util.Random;
+import javax.swing.JOptionPane;
 import model.DrugInterface;
 import model.EventInterface;
 import model.Player;
@@ -27,11 +28,17 @@ public class CustomsAuthorityEvent extends CountryEvent {
                 d.remove(confiscated);
             }
         }
+        player.takeDamage(10);
+        JOptionPane.showMessageDialog(null, "You have been taken by the Customs Authority!" + System.lineSeparator() +
+                                            "Half of all your drugs have been taken" + System.lineSeparator() + 
+                                            "And you lose 10% of your health!");
+        
+        
     }
 
     @Override
     public boolean shouldFire(Player player) {
-        return super.shouldFire(player);
+        return true;
     }
     
 }
