@@ -26,34 +26,5 @@ public class AngelDust implements DrugInterface {
         return "Angel Dust";
     }
 
-    @Override
-    public int getPrice() {
-        return price;
-    }
-
-    @Override
-    public void setPrice(int price) {
-        this.price = price;
-    }
-    
-    @Override
-    public int getAmount() {
-        return amount;
-    }
-        
-    @Override
-    public void remove(int amount) {
-        this.amount -= amount;
-    }
-        
-    @Override
-    public void add(int amount) {
-        this.amount += amount;
-    }
-    
-    @Override
-    public void setAmount(int newAmount) {
-        this.amount = newAmount;
-    }
     
 }
