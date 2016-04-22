@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package control.main;
+package control;
 
 import java.util.ArrayList;
 import model.country.*;
-import model.player.*;
 import model.drug.*;
 import model.event.*;
+import model.*;
 import view.MafiaGameWindow;
 import control.*;
 import javax.swing.ComboBoxModel;

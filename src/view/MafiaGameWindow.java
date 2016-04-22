@@ -5,12 +5,12 @@
  */
 package view;
 
-import model.player.Player;
+import control.MafiaGame;
+import model.Player;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.UIManager;
-import control.main.*;
 
 /**
  *

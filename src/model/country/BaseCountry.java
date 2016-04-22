@@ -5,12 +5,12 @@
  */
 package model.country;
 
-import model.player.Player;
+import model.Player;
 import java.util.ArrayList;
 import java.util.Random;
 import model.drug.*;
-import control.CountryInterface;
-import control.DrugInterface;
+import model.country.*;
+import model.*;
 
 /**
  *

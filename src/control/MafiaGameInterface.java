@@ -7,7 +7,9 @@ package control;
 
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
-import model.player.Player;
+import model.CountryInterface;
+import model.EventInterface;
+import model.Player;
 
 /**
  *

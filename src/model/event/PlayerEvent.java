@@ -5,7 +5,7 @@
  */
 package model.event;
 
-import control.EventInterface;
+import model.EventInterface;
 
 /**
  *
