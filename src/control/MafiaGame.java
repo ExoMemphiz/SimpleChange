@@ -39,6 +39,16 @@ public class MafiaGame {
         MafiaGameWindow mafiaGameGui = new MafiaGameWindow(this);
     }
     
+    public void initCountries() {
+        countries = new ArrayList<>();
+        countries.add(new Afghanistan());
+        countries.add(new Colombia());
+        countries.add(new Denmark());
+        countries.add(new France());
+        countries.add(new Germany());
+        countries.add(new USA());
+    }
+    
     public void setCountry(CountryInterface country) {
         currentCountry = country;
         country.setPlayer(player);
@@ -84,16 +94,6 @@ public class MafiaGame {
         return model;
     }
 
-    public void initCountries() {
-        countries = new ArrayList<>();
-        countries.add(new Afghanistan());
-        countries.add(new Colombia());
-        countries.add(new Denmark());
-        countries.add(new France());
-        countries.add(new Germany());
-        countries.add(new USA());
-    }
-
     public DefaultComboBoxModel getSellDrugListAsComboBoxModel() {
         DefaultComboBoxModel model = new DefaultComboBoxModel();
         model.removeAllElements();
@@ -112,6 +112,19 @@ public class MafiaGame {
             }
         }
         return model;
+    }
+
+    public int getPlayerCurrentDrugAmount(String selectedSellingDrugName) {
+        DrugInterface d = getPlayer().getDrug( selectedSellingDrugName );
+        int amount = d.getAmount();
+        return amount;
+    }
+
+    public int getCountryCurrentDrugAmount(String selectedBuyingDrugName) {
+        CountryInterface country = getCurrentCountry();
+        DrugInterface d = country.getDrug( selectedBuyingDrugName );
+        int amount = d.getAmount();
+        return amount;
     }
     
 }

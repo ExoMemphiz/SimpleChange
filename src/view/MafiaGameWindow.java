@@ -21,7 +21,9 @@ public class MafiaGameWindow extends javax.swing.JFrame {
     MafiaGame mainGame;
     
     /**
-     * Creates new form TestGUI
+     * Creates new form TestGUI.
+     * Gets the list of buying drugs and selling drugs for the first time game starts
+     *
      */
     public MafiaGameWindow(MafiaGame main) {
         this.mainGame = main;
@@ -34,8 +36,11 @@ public class MafiaGameWindow extends javax.swing.JFrame {
         jComboBoxSellingDrugs.setModel( mainGame.getSellDrugListAsComboBoxModel() );
         jLabelCurrentMoney.setText("Current money: $" + mainGame.getPlayer().getMoney() );
     }
-  
     
+    /**
+     * 
+     * @return 
+     */
     public String getSelectedBuyingDrugName() {
         String selected = jComboBoxBuyingDrugs.getSelectedItem().toString();
         return selected.substring(0, selected.indexOf("-") - 1);
@@ -88,6 +93,11 @@ public class MafiaGameWindow extends javax.swing.JFrame {
         jComboBoxBuyingDrugs.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxBuyingDrugsItemStateChanged(evt);
+            }
+        });
+        jComboBoxBuyingDrugs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxBuyingDrugsActionPerformed(evt);
             }
         });
 
@@ -271,16 +281,13 @@ public class MafiaGameWindow extends javax.swing.JFrame {
 
     private void jComboBoxBuyingDrugsItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxBuyingDrugsItemStateChanged
         System.out.println("[jComboBoxBuyingDrugsPropertyChange] Changed to item: " + getSelectedBuyingDrugName());
-        CountryInterface country = mainGame.getCurrentCountry();
-        DrugInterface d = country.getDrug(getSelectedBuyingDrugName());
-        int amount = d.getAmount();
+        int amount = mainGame.getCountryCurrentDrugAmount( getSelectedBuyingDrugName() );
         jSliderBuyDrugs.setMaximum(amount);
     }//GEN-LAST:event_jComboBoxBuyingDrugsItemStateChanged
 
     private void jComboBoxSellingDrugsItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxSellingDrugsItemStateChanged
         System.out.println("[jComboBoxSellingDrugsPropertyChange] Changed to item: " + getSelectedSellingDrugName());
-        DrugInterface d = mainGame.getPlayer().getDrug(getSelectedSellingDrugName());
-        int amount = d.getAmount();
+        int amount = mainGame.getPlayerCurrentDrugAmount( getSelectedSellingDrugName() );
         jSliderSellDrugs.setMaximum(amount);
     }//GEN-LAST:event_jComboBoxSellingDrugsItemStateChanged
 
@@ -299,6 +306,10 @@ public class MafiaGameWindow extends javax.swing.JFrame {
     private void jButtonSellDrugsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSellDrugsActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonSellDrugsActionPerformed
+
+    private void jComboBoxBuyingDrugsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxBuyingDrugsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxBuyingDrugsActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBuyDrugs;
