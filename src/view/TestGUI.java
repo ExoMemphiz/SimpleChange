@@ -106,6 +106,8 @@ public class TestGUI extends javax.swing.JFrame {
         jSliderSellDrugs = new javax.swing.JSlider();
         jButtonSellDrugs = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
+        jComboBoxBuyingDrugs1 = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -231,15 +233,35 @@ public class TestGUI extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Drugs", jPanel1);
 
+        jComboBoxBuyingDrugs1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxBuyingDrugs1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxBuyingDrugs1ItemStateChanged(evt);
+            }
+        });
+
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Go to country");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 395, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jComboBoxBuyingDrugs1, 0, 383, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 272, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboBoxBuyingDrugs1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(240, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Travel", jPanel2);
@@ -294,14 +316,20 @@ public class TestGUI extends javax.swing.JFrame {
         jButtonSellDrugs.setText("Sell drugs (" + jSliderSellDrugs.getValue() + ")");
     }//GEN-LAST:event_jSliderSellDrugsStateChanged
 
+    private void jComboBoxBuyingDrugs1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxBuyingDrugs1ItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxBuyingDrugs1ItemStateChanged
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBuyDrugs;
     private javax.swing.JButton jButtonSellDrugs;
     private javax.swing.JComboBox<String> jComboBoxBuyingDrugs;
+    private javax.swing.JComboBox<String> jComboBoxBuyingDrugs1;
     private javax.swing.JComboBox<String> jComboBoxSellingDrugs;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabelCurrentMoney;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
