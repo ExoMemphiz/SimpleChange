@@ -38,7 +38,7 @@ public class CustomsAuthorityEvent extends CountryEvent {
 
     @Override
     public boolean shouldFire(Player player) {
-        return true;
+        return super.shouldFire(player);
     }
     
 }

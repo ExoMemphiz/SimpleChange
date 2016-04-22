@@ -19,10 +19,7 @@ import java.util.ArrayList;
  */
 public class FileHandler {
 
-    public FileHandler() {
-    }
-    
-    public static ArrayList<String> readFromFile (String path) {
+    public static ArrayList<String> readFromFile(String path) {
         File f = new File(path);
         ArrayList<String> readList = new ArrayList();
         try {
@@ -30,31 +27,29 @@ public class FileHandler {
             BufferedReader br = new BufferedReader(fr);
             String newline = "";
             br.readLine();
-            while ( (newline = br.readLine()) != null) {
+            while ((newline = br.readLine()) != null) {
                 readList.add( newline );
             }
             br.close();
         } catch (IOException ioe) {
             System.out.println( ioe.getMessage() );
         }        
-        
         return readList;
     }
     
-    public static void writeFile (String path, ArrayList<String> writeList) {
+    public static void writeFile(String path, ArrayList<String> data) {
         File f = new File(path);
         try {
-            FileWriter fw = new FileWriter( f.getName() );
+            FileWriter fw = new FileWriter(f.getName());
             BufferedWriter bw = new BufferedWriter(fw);
-            for (String string : writeList) {
+            for (String string : data) {
                 bw.write(string);
                 bw.newLine();
             }
             bw.close();
         } catch (IOException ioe) {
-            System.out.println( ioe.getMessage() );
+            System.out.println(ioe.getMessage());
         }
     }
-      
 
 }

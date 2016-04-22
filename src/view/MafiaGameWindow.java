@@ -333,7 +333,7 @@ public class MafiaGameWindow extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Extra", jPanel3);
 
-        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, 320));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
