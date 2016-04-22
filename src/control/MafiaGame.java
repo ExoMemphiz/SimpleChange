@@ -20,7 +20,7 @@ import javax.swing.DefaultComboBoxModel;
  * 
  * @author CHRIS
  */
-public class MafiaGame implements MafiaGameInterface {
+public class MafiaGame {
  
     private Player player;
     private CountryInterface currentCountry;
@@ -39,33 +39,27 @@ public class MafiaGame implements MafiaGameInterface {
         MafiaGameWindow mafiaGameGui = new MafiaGameWindow(this);
     }
     
-    @Override
     public void setCountry(CountryInterface country) {
         currentCountry = country;
         country.setPlayer(player);
     }
     
-    @Override
     public CountryInterface getCurrentCountry() {
         return currentCountry;
     }
     
-    @Override
     public Player getPlayer() {
         return player;
     }
     
-    @Override
     public ArrayList<CountryInterface> getCountries() {
         return countries;
     }
     
-    @Override
     public ArrayList<EventInterface> getEvents() {
         return events;
     }
     
-    @Override
     public CountryInterface getCountry(String name) {
         for (CountryInterface c : countries) {
             String countryName = c.getClass().toString().replaceAll("class model.country.", "");
@@ -76,7 +70,6 @@ public class MafiaGame implements MafiaGameInterface {
         return null;
     }
 
-    @Override
     public DefaultComboBoxModel getBuyDrugListAsComboBoxModel() {
         DefaultComboBoxModel model = new DefaultComboBoxModel();
         model.removeAllElements();
@@ -91,7 +84,6 @@ public class MafiaGame implements MafiaGameInterface {
         return model;
     }
 
-    @Override
     public void initCountries() {
         countries = new ArrayList<>();
         countries.add(new Afghanistan());

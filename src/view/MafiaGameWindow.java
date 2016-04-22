@@ -32,13 +32,9 @@ public class MafiaGameWindow extends javax.swing.JFrame {
         setVisible(true);
         jComboBoxBuyingDrugs.setModel( mainGame.getBuyDrugListAsComboBoxModel() );
         jComboBoxSellingDrugs.setModel( mainGame.getSellDrugListAsComboBoxModel() );
-        updateMoney();
+        jLabelCurrentMoney.setText("Current money: $" + mainGame.getPlayer().getMoney() );
     }
-    
-    public void updateMoney() {
-        int money = mainGame.getPlayer().getMoney();
-        jLabelCurrentMoney.setText("Current money: $" + money);
-    }
+  
     
     public String getSelectedBuyingDrugName() {
         String selected = jComboBoxBuyingDrugs.getSelectedItem().toString();
