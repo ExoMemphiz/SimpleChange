@@ -17,6 +17,5 @@ public interface Drug {
     public abstract void setPrice(int price);
     public abstract void remove(int amount);
     public abstract void add(int amount);
-    //hej chris hvad så
     
 }

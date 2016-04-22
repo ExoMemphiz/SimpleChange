@@ -11,6 +11,9 @@ package model;
  */
 public interface Event {
  
+    /**
+     * 
+     */
     public abstract void effect();
     public abstract boolean shouldFire();
     
