@@ -68,7 +68,7 @@ public class Player {
     }
     
     public void removeDrug(BaseDrug drug, int amount) {
-        for (DrugInterface d : drugs) {
+        for (BaseDrug d : drugs) {
             if (d.getName().equals(drug.getName())) {
                 d.remove(amount);
             }

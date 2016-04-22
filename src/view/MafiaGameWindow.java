@@ -99,7 +99,7 @@ public class MafiaGameWindow extends javax.swing.JFrame {
         model.removeAllElements();
         Player player = mainGame.getPlayer();
         ArrayList<BaseDrug> playerDrugs = player.getDrugs();
-        CountryInterface country = mainGame.getCurrentCountry();
+        BaseCountry country = mainGame.getCurrentCountry();
         ArrayList<BaseDrug> countryDrugs = country.getDrugs();
         for (int i = 0; i < playerDrugs.size(); i++) {
             BaseDrug d = playerDrugs.get(i);
@@ -118,7 +118,7 @@ public class MafiaGameWindow extends javax.swing.JFrame {
     public DefaultComboBoxModel getBuyDrugModel() {
         DefaultComboBoxModel model = new DefaultComboBoxModel();
         model.removeAllElements();
-        CountryInterface country = mainGame.getCurrentCountry();
+        BaseCountry country = mainGame.getCurrentCountry();
         ArrayList<BaseDrug> drugs = country.getDrugs();
         for (int i = 0; i < drugs.size(); i++) {
             BaseDrug d = drugs.get(i);
