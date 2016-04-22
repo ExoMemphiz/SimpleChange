@@ -8,6 +8,7 @@ package model;
 import java.util.ArrayList;
 import model.country.*;
 import model.DrugInterface;
+import model.drug.BaseDrug;
 
 /**
  *
@@ -18,7 +19,7 @@ public class Player {
     private int currentTurn = 0;
     private String name;
     private int money;
-    private ArrayList<DrugInterface> drugs;
+    private ArrayList<BaseDrug> drugs;
 
     public Player(String name, int money) {
         this.name = name;
@@ -38,8 +39,8 @@ public class Player {
         return currentTurn;
     }
     
-    public DrugInterface getDrug(String drugName) {
-        for (DrugInterface d : drugs) {
+    public BaseDrug getDrug(String drugName) {
+        for (BaseDrug d : drugs) {
             if (d.getName().equals(drugName)) {
                 return d;
             }
@@ -47,17 +48,17 @@ public class Player {
         return null;
     }
     
-    public ArrayList<DrugInterface> getDrugs() {
+    public ArrayList<BaseDrug> getDrugs() {
         return drugs;
     }
     
-    public void buyDrug(DrugInterface drug, int price) {
+    public void buyDrug(BaseDrug drug, int price) {
         addDrug(drug);
         money -= price;
     }
     
-    public void addDrug(DrugInterface drug) {
-        for (DrugInterface d : drugs) {
+    public void addDrug(BaseDrug drug) {
+        for (BaseDrug d : drugs) {
             if (d.getName().equals(drug.getName())) {
                 d.add(drug.getAmount());
                 return;
@@ -68,15 +69,15 @@ public class Player {
         drugs.add(drug);
     }
     
-    public void removeDrug(DrugInterface drug, int amount) {
-        for (DrugInterface d : drugs) {
+    public void removeDrug(BaseDrug drug, int amount) {
+        for (BaseDrug d : drugs) {
             if (d.getName().equals(drug.getName())) {
                 d.remove(amount);
             }
         }
     }
     
-    public void sellDrug(DrugInterface drug, int amountSold, int moneyEarned) {
+    public void sellDrug(BaseDrug drug, int amountSold, int moneyEarned) {
         money += moneyEarned;
         removeDrug(drug, amountSold);
     }

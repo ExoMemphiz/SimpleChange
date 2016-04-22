@@ -19,7 +19,7 @@ import model.*;
 public abstract class BaseCountry implements CountryInterface  {
     
     Player player;
-    ArrayList<DrugInterface> drugs;
+    ArrayList<BaseDrug> drugs;
     Random r;
     
     public void init() {
@@ -52,12 +52,12 @@ public abstract class BaseCountry implements CountryInterface  {
         init();
     }
     
-    public ArrayList<DrugInterface> getDrugs() {
+    public ArrayList<BaseDrug> getDrugs() {
         return drugs;
     }
     
-    public DrugInterface getDrug(String drugName) {
-        for (DrugInterface d : drugs) {
+    public BaseDrug getDrug(String drugName) {
+        for (BaseDrug d : drugs) {
             if (d.getName().equals(drugName)) {
                 return d;
             }
@@ -66,7 +66,7 @@ public abstract class BaseCountry implements CountryInterface  {
     }
     
     public int getPrice(String drugName, int amount) {
-        DrugInterface d = getDrug(drugName);
+        BaseDrug d = getDrug(drugName);
         if (d != null) {
             return d.getPrice() * amount;
         }
@@ -83,7 +83,7 @@ public abstract class BaseCountry implements CountryInterface  {
      */
     public boolean buyDrug(String drugName, int amount, int playerMoney) throws Exception {
         if (playerMoney >= getPrice(drugName, amount)) {
-            DrugInterface d = getDrug(drugName);
+            BaseDrug d = getDrug(drugName);
             if (d != null) {
                 if (d.getAmount() >= amount) {
                     d.remove(amount);
@@ -100,7 +100,7 @@ public abstract class BaseCountry implements CountryInterface  {
     }
     
     public int sellStock(String drugName, int amount) {
-        DrugInterface d = getDrug(drugName);
+        BaseDrug d = getDrug(drugName);
         if (d != null) {
             d.add(amount);
             return d.getPrice() * amount;
@@ -110,7 +110,7 @@ public abstract class BaseCountry implements CountryInterface  {
     
     public void rollPrices() {
         for (int i = 0; i < drugs.size(); i++) {
-            DrugInterface d = drugs.get(i);
+            BaseDrug d = drugs.get(i);
             if (r.nextInt(100) <= 65) { //There is a 65% chance to change price for this drug
                 boolean increasePrice = r.nextBoolean(); //Random if it should increase or decrease price
                 int priceChange = r.nextInt(85) + 1;     //Amount (percentage) to increase/decrease price
@@ -123,7 +123,7 @@ public abstract class BaseCountry implements CountryInterface  {
     
     public void rollStock() {
         for (int i = 0; i < drugs.size(); i++) {
-            DrugInterface d = drugs.get(i);
+            BaseDrug d = drugs.get(i);
             if (r.nextInt(100) <= 65) { //There is a 65% chance to change stock for this drug
                 boolean increaseStock = r.nextBoolean(); //Random if it should increase or decrease stock
                 int stockChange = r.nextInt(41) + 15;     //Amount (percentage) to increase/decrease stock

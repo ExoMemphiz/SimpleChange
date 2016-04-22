@@ -15,6 +15,7 @@ import javax.swing.UIManager;
 import model.CountryInterface;
 import model.DrugInterface;
 import model.country.BaseCountry;
+import model.drug.BaseDrug;
 
 /**
  *
@@ -96,12 +97,12 @@ public class MafiaGameWindow extends javax.swing.JFrame {
         DefaultComboBoxModel model = new DefaultComboBoxModel();
         model.removeAllElements();
         Player player = mainGame.getPlayer();
-        ArrayList<DrugInterface> playerDrugs = player.getDrugs();
-        CountryInterface country = mainGame.getCurrentCountry();
-        ArrayList<DrugInterface> countryDrugs = country.getDrugs();
+        ArrayList<BaseDrug> playerDrugs = player.getDrugs();
+        BaseCountry country = mainGame.getCurrentCountry();
+        ArrayList<BaseDrug> countryDrugs = country.getDrugs();
         for (int i = 0; i < playerDrugs.size(); i++) {
-            DrugInterface d = playerDrugs.get(i);
-            for (DrugInterface cDrug : countryDrugs) {
+            BaseDrug d = playerDrugs.get(i);
+            for (BaseDrug cDrug : countryDrugs) {
                 if (d.getName().equals(cDrug.getName())) {
                     if (d.getAmount() > 0) {
                         model.addElement(d.getName() + " - " + cDrug.getPrice());
@@ -116,10 +117,10 @@ public class MafiaGameWindow extends javax.swing.JFrame {
     public DefaultComboBoxModel getBuyDrugModel() {
         DefaultComboBoxModel model = new DefaultComboBoxModel();
         model.removeAllElements();
-        CountryInterface country = mainGame.getCurrentCountry();
-        ArrayList<DrugInterface> drugs = country.getDrugs();
+        BaseCountry country = mainGame.getCurrentCountry();
+        ArrayList<BaseDrug> drugs = country.getDrugs();
         for (int i = 0; i < drugs.size(); i++) {
-            DrugInterface d = drugs.get(i);
+            BaseDrug d = drugs.get(i);
             if (d.getAmount() > 0) {
                 model.addElement(d.getName() + " - " + d.getPrice());
             }

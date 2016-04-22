@@ -6,6 +6,7 @@
 package model;
 
 import java.util.ArrayList;
+import model.drug.BaseDrug;
 
 /**
  *
@@ -16,8 +17,8 @@ public interface CountryInterface {
     public abstract void init();
     public abstract String getName();
     public abstract void setPlayer(Player player);
-    public abstract ArrayList<DrugInterface> getDrugs();
-    public abstract DrugInterface getDrug(String drugName);
+    public abstract ArrayList<BaseDrug> getDrugs();
+    public abstract BaseDrug getDrug(String drugName);
     public abstract int getPrice(String drugName, int amount);
     public abstract boolean buyDrug(String drugName, int amount, int playerMoney) throws Exception;
     public abstract int sellStock(String drugName, int amount);

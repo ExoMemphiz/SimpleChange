@@ -97,7 +97,7 @@ public class MafiaGame {
     }
 
     public int getPlayerCurrentDrugAmount(String selectedSellingDrugName) {
-        DrugInterface drug = getPlayer().getDrug(selectedSellingDrugName);
+        BaseDrug drug = getPlayer().getDrug(selectedSellingDrugName);
         if (drug != null) {
             int amount = drug.getAmount();
             return amount;
@@ -106,8 +106,8 @@ public class MafiaGame {
     }
 
     public int getCountryCurrentDrugAmount(String selectedBuyingDrugName) {
-        CountryInterface country = getCurrentCountry();
-        DrugInterface drug = country.getDrug( selectedBuyingDrugName );
+        BaseCountry country = getCurrentCountry();
+        BaseDrug drug = country.getDrug( selectedBuyingDrugName );
         int amount = drug.getAmount();
         return amount;
     }
