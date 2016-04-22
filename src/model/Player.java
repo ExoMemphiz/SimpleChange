@@ -7,7 +7,7 @@ package model;
 
 import java.util.ArrayList;
 import model.*;
-import model.country.Denmark;
+import model.country.*;
 
 /**
  *
