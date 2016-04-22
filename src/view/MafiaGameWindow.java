@@ -87,6 +87,8 @@ public class MafiaGameWindow extends javax.swing.JFrame {
         jLabelCurrentMoney.setText("Current money: $" + mainGame.getPlayer().getMoney());
         int amount = mainGame.getPlayerCurrentDrugAmount(getSelectedSellingDrugName());
         jSliderSellDrugs.setMaximum(amount);
+        amount = mainGame.getCurrentCountry().getDrug(getSelectedBuyingDrugName()).getAmount();
+        jSliderBuyDrugs.setMaximum(amount);
         jLabelWelcomeText.setText("Welcome to " + mainGame.getCurrentCountry().getName() + "!");
         jComboBoxCountries.setModel(getTravelModel());
         jLabelCurrentTurn.setText("Current turn: " + mainGame.getTurn());
@@ -448,7 +450,6 @@ public class MafiaGameWindow extends javax.swing.JFrame {
                 String msg = e.getMessage();
                 JOptionPane.showMessageDialog(null, msg);
             }
-            
         }
     }//GEN-LAST:event_jButtonBuyDrugsActionPerformed
 

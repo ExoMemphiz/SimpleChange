@@ -81,7 +81,7 @@ public abstract class BaseCountry implements CountryInterface  {
      * @throws Exception 
      */
     public boolean buyDrug(String drugName, int amount, int playerMoney) throws Exception {
-        if (playerMoney >= getPrice(drugName, amount)) {
+        if (playerMoney >= getPrice(drugName, amount)) {    
             BaseDrug d = getDrug(drugName);
             if (d != null) {
                 if (d.getAmount() >= amount) {

@@ -34,7 +34,7 @@ public class MafiaGame {
 
     public MafiaGame() {
         initCountries();
-        player = new Player("Peter the Gangster", 5000);
+        player = new Player("Peter the Gangster", 50000000);
         BaseCountry denmark = getCountry("Denmark");
         setCountry(denmark);
         MafiaGameWindow mafiaGameGui = new MafiaGameWindow(this);
