@@ -50,4 +50,9 @@ public class Heroin implements Drug {
         this.amount += amount;
     }
     
+    @Override
+    public void setAmount(int newAmount) {
+        this.amount = newAmount;
+    }    
+    
 }

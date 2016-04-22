@@ -17,5 +17,6 @@ public interface Drug {
     public abstract void setPrice(int price);
     public abstract void remove(int amount);
     public abstract void add(int amount);
+    public abstract void setAmount(int i);
     
 }

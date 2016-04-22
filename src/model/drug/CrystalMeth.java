@@ -50,4 +50,9 @@ public class CrystalMeth implements Drug {
         this.amount += amount;
     }
     
+    @Override
+    public void setAmount(int newAmount) {
+        this.amount = newAmount;
+    }    
+    
 }
