@@ -55,8 +55,17 @@ public class Player {
         drugs.add(drug);
     }
     
-    public void sellDrug(DrugInterface drug) {
-        
+    public void removeDrug(DrugInterface drug, int amount) {
+        for (DrugInterface d : drugs) {
+            if (d.getName().equals(drug.getName())) {
+                d.remove(amount);
+            }
+        }
+    }
+    
+    public void sellDrug(DrugInterface drug, int amountSold, int moneyEarned) {
+        money += moneyEarned;
+        removeDrug(drug, amountSold);
     }
     
     public void advanceTurn() {

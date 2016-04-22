@@ -14,7 +14,7 @@ public interface EventInterface {
     /**
      * 
      */
-    public abstract void effect();
-    public abstract boolean shouldFire();
+    public abstract void effect(Player player);
+    public abstract boolean shouldFire(Player player);
     
 }

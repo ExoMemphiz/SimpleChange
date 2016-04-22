@@ -6,6 +6,7 @@
 package model.event;
 
 import model.EventInterface;
+import model.Player;
 
 /**
  *
@@ -14,12 +15,12 @@ import model.EventInterface;
 public class PlayerEvent implements EventInterface {
 
     @Override
-    public void effect() {
+    public void effect(Player player) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean shouldFire() {
+    public boolean shouldFire(Player player) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
