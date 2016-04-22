@@ -73,7 +73,7 @@ public class MafiaGameWindow extends javax.swing.JFrame {
         jSliderSellDrugs = new javax.swing.JSlider();
         jButtonSellDrugs = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jComboBoxBuyingDrugs1 = new javax.swing.JComboBox<>();
+        jComboBoxCountries = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
 
@@ -93,11 +93,6 @@ public class MafiaGameWindow extends javax.swing.JFrame {
         jComboBoxBuyingDrugs.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxBuyingDrugsItemStateChanged(evt);
-            }
-        });
-        jComboBoxBuyingDrugs.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxBuyingDrugsActionPerformed(evt);
             }
         });
 
@@ -215,10 +210,10 @@ public class MafiaGameWindow extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Drugs", jPanel1);
 
-        jComboBoxBuyingDrugs1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBoxBuyingDrugs1.addItemListener(new java.awt.event.ItemListener() {
+        jComboBoxCountries.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxCountries.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jComboBoxBuyingDrugs1ItemStateChanged(evt);
+                jComboBoxCountriesItemStateChanged(evt);
             }
         });
 
@@ -232,7 +227,7 @@ public class MafiaGameWindow extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBoxBuyingDrugs1, 0, 383, Short.MAX_VALUE)
+                    .addComponent(jComboBoxCountries, 0, 383, Short.MAX_VALUE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -242,7 +237,7 @@ public class MafiaGameWindow extends javax.swing.JFrame {
                 .addGap(12, 12, 12)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBoxBuyingDrugs1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jComboBoxCountries, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(240, Short.MAX_VALUE))
         );
 
@@ -295,27 +290,24 @@ public class MafiaGameWindow extends javax.swing.JFrame {
         jButtonSellDrugs.setText("Sell drugs (" + jSliderSellDrugs.getValue() + ")");
     }//GEN-LAST:event_jSliderSellDrugsStateChanged
 
-    private void jComboBoxBuyingDrugs1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxBuyingDrugs1ItemStateChanged
+    private void jComboBoxCountriesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxCountriesItemStateChanged
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBoxBuyingDrugs1ItemStateChanged
+    }//GEN-LAST:event_jComboBoxCountriesItemStateChanged
 
     private void jButtonBuyDrugsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuyDrugsActionPerformed
-        // TODO add your handling code here:
+        mainGame.buyDrugsFromCountry ( getSelectedBuyingDrugName(), getSelectedBuyingDrugAmount() );
+        
     }//GEN-LAST:event_jButtonBuyDrugsActionPerformed
 
     private void jButtonSellDrugsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSellDrugsActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonSellDrugsActionPerformed
 
-    private void jComboBoxBuyingDrugsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxBuyingDrugsActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBoxBuyingDrugsActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBuyDrugs;
     private javax.swing.JButton jButtonSellDrugs;
     private javax.swing.JComboBox<String> jComboBoxBuyingDrugs;
-    private javax.swing.JComboBox<String> jComboBoxBuyingDrugs1;
+    private javax.swing.JComboBox<String> jComboBoxCountries;
     private javax.swing.JComboBox<String> jComboBoxSellingDrugs;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
