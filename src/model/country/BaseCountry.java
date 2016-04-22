@@ -5,19 +5,21 @@
  */
 package model.country;
 
+import model.player.Player;
 import java.util.ArrayList;
 import java.util.Random;
-import model.*;
 import model.drug.*;
+import control.CountryInterface;
+import control.DrugInterface;
 
 /**
  *
  * @author scheldejonas
  */
-public class BaseCountry implements Country  {
+public class BaseCountry implements CountryInterface  {
     
     Player player;
-    ArrayList<Drug> drugs;
+    ArrayList<DrugInterface> drugs;
     Random r;
     
     public void init() {
@@ -48,12 +50,12 @@ public class BaseCountry implements Country  {
         init();
     }
     
-    public ArrayList<Drug> getDrugs() {
+    public ArrayList<DrugInterface> getDrugs() {
         return drugs;
     }
     
-    public Drug getDrug(String drugName) {
-        for (Drug d : drugs) {
+    public DrugInterface getDrug(String drugName) {
+        for (DrugInterface d : drugs) {
             if (d.getName().equals(drugName)) {
                 return d;
             }
@@ -62,7 +64,7 @@ public class BaseCountry implements Country  {
     }
     
     public int getPrice(String drugName, int amount) {
-        Drug d = getDrug(drugName);
+        DrugInterface d = getDrug(drugName);
         if (d != null) {
             return d.getPrice() * amount;
         }
@@ -71,7 +73,7 @@ public class BaseCountry implements Country  {
     
     public boolean buyDrug(String drugName, int amount, int playerMoney) throws Exception {
         if (playerMoney >= getPrice(drugName, amount)) {
-            Drug d = getDrug(drugName);
+            DrugInterface d = getDrug(drugName);
             if (d != null) {
                 if (d.getAmount() >= amount) {
                     d.remove(amount);
@@ -88,7 +90,7 @@ public class BaseCountry implements Country  {
     }
     
     public int sellStock(String drugName, int amount) {
-        Drug d = getDrug(drugName);
+        DrugInterface d = getDrug(drugName);
         if (d != null) {
             d.add(amount);
             return d.getPrice() * amount;
@@ -98,7 +100,7 @@ public class BaseCountry implements Country  {
     
     public void rollPrices() {
         for (int i = 0; i < drugs.size(); i++) {
-            Drug d = drugs.get(i);
+            DrugInterface d = drugs.get(i);
             if (r.nextInt(100) <= 65) { //There is a 65% chance to change price for this drug
                 boolean increasePrice = r.nextBoolean(); //Random if it should increase or decrease price
                 int priceChange = r.nextInt(85) + 1;     //Amount (percentage) to increase/decrease price
@@ -111,7 +113,7 @@ public class BaseCountry implements Country  {
     
     public void rollStock() {
         for (int i = 0; i < drugs.size(); i++) {
-            Drug d = drugs.get(i);
+            DrugInterface d = drugs.get(i);
             if (r.nextInt(100) <= 65) { //There is a 65% chance to change stock for this drug
                 boolean increaseStock = r.nextBoolean(); //Random if it should increase or decrease stock
                 int stockChange = r.nextInt(41) + 15;     //Amount (percentage) to increase/decrease stock

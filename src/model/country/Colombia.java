@@ -5,7 +5,6 @@
  */
 package model.country;
 
-import model.*;
 import model.drug.*;
 
 /**

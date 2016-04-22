@@ -5,25 +5,27 @@
  */
 package view;
 
-import controller.Main;
+import model.player.Player;
+import control.main.Main;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.UIManager;
-import model.*;
+import control.CountryInterface;
+import control.DrugInterface;
 
 /**
  *
  * @author CHRIS
  */
-public class TestGUI extends javax.swing.JFrame {
+public class MafiaGameWindow extends javax.swing.JFrame {
 
     Main main;
     
     /**
      * Creates new form TestGUI
      */
-    public TestGUI(Main main) {
+    public MafiaGameWindow(Main main) {
         this.main = main;
         initComponents();
         try {
@@ -38,10 +40,10 @@ public class TestGUI extends javax.swing.JFrame {
     public void setBuyingModel() {
         DefaultComboBoxModel model = new DefaultComboBoxModel();
         model.removeAllElements();
-        Country country = main.getCurrentCountry();
-        ArrayList<Drug> drugs = country.getDrugs();
+        CountryInterface country = main.getCurrentCountry();
+        ArrayList<DrugInterface> drugs = country.getDrugs();
         for (int i = 0; i < drugs.size(); i++) {
-            Drug d = drugs.get(i);
+            DrugInterface d = drugs.get(i);
             if (d.getAmount() > 0) {
                 model.addElement(d.getName() + " - " + d.getPrice());
             }
@@ -53,12 +55,12 @@ public class TestGUI extends javax.swing.JFrame {
         DefaultComboBoxModel model = new DefaultComboBoxModel();
         model.removeAllElements();
         Player player = main.getPlayer();
-        ArrayList<Drug> playerDrugs = player.getDrugs();
-        Country country = main.getCurrentCountry();
-        ArrayList<Drug> countryDrugs = country.getDrugs();
+        ArrayList<DrugInterface> playerDrugs = player.getDrugs();
+        CountryInterface country = main.getCurrentCountry();
+        ArrayList<DrugInterface> countryDrugs = country.getDrugs();
         for (int i = 0; i < playerDrugs.size(); i++) {
-            Drug d = playerDrugs.get(i);
-            for (Drug cDrug : countryDrugs) {
+            DrugInterface d = playerDrugs.get(i);
+            for (DrugInterface cDrug : countryDrugs) {
                 if (d.getName().equals(cDrug.getName())) {
                     if (d.getAmount() > 0) {
                         model.addElement(d.getName() + " - " + cDrug.getPrice());
@@ -309,15 +311,15 @@ public class TestGUI extends javax.swing.JFrame {
 
     private void jComboBoxBuyingDrugsItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxBuyingDrugsItemStateChanged
         System.out.println("[jComboBoxBuyingDrugsPropertyChange] Changed to item: " + getSelectedBuyingDrugName());
-        Country country = main.getCurrentCountry();
-        Drug d = country.getDrug(getSelectedBuyingDrugName());
+        CountryInterface country = main.getCurrentCountry();
+        DrugInterface d = country.getDrug(getSelectedBuyingDrugName());
         int amount = d.getAmount();
         jSliderBuyDrugs.setMaximum(amount);
     }//GEN-LAST:event_jComboBoxBuyingDrugsItemStateChanged
 
     private void jComboBoxSellingDrugsItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxSellingDrugsItemStateChanged
         System.out.println("[jComboBoxSellingDrugsPropertyChange] Changed to item: " + getSelectedSellingDrugName());
-        Drug d = main.getPlayer().getDrug(getSelectedSellingDrugName());
+        DrugInterface d = main.getPlayer().getDrug(getSelectedSellingDrugName());
         int amount = d.getAmount();
         jSliderSellDrugs.setMaximum(amount);
     }//GEN-LAST:event_jComboBoxSellingDrugsItemStateChanged

@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model;
+package model.player;
 
 import java.util.ArrayList;
-import model.*;
 import model.country.*;
+import control.DrugInterface;
 
 /**
  *
@@ -18,7 +18,7 @@ public class Player {
     private int currentTurn = 0;
     private String name;
     private int money;
-    private ArrayList<Drug> drugs;
+    private ArrayList<DrugInterface> drugs;
 
     public Player(String name, int money) {
         this.name = name;
@@ -38,8 +38,8 @@ public class Player {
         return currentTurn;
     }
     
-    public Drug getDrug(String drugName) {
-        for (Drug d : drugs) {
+    public DrugInterface getDrug(String drugName) {
+        for (DrugInterface d : drugs) {
             if (d.getName().equals(drugName)) {
                 return d;
             }
@@ -47,15 +47,15 @@ public class Player {
         return null;
     }
     
-    public ArrayList<Drug> getDrugs() {
+    public ArrayList<DrugInterface> getDrugs() {
         return drugs;
     }
     
-    public void addDrug(Drug drug) {
+    public void addDrug(DrugInterface drug) {
         drugs.add(drug);
     }
     
-    public void sellDrug(Drug drug) {
+    public void sellDrug(DrugInterface drug) {
         
     }
     

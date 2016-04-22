@@ -3,17 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package control.main;
 
+import model.player.Player;
 import java.util.ArrayList;
-import model.*;
 import model.country.Afghanistan;
 import model.country.Colombia;
 import model.country.Denmark;
 import model.country.France;
 import model.country.Germany;
 import model.country.USA;
-import view.TestGUI;
+import view.MafiaGameWindow;
+import control.CountryInterface;
+import control.EventInterface;
 
 /**
  * 
@@ -23,16 +25,16 @@ import view.TestGUI;
 public class Main {
  
     private Player player;
-    private Country currentCountry;
-    private ArrayList<Country> countries;
-    private ArrayList<Event> events;
+    private CountryInterface currentCountry;
+    private ArrayList<CountryInterface> countries;
+    private ArrayList<EventInterface> events;
 
     public Main() {
         initCountries();
         player = new Player("Peter the Gangster", 5000);
-        Country denmark = getCountry("Denmark");
+        CountryInterface denmark = getCountry("Denmark");
         setCountry(denmark);
-        TestGUI gui = new TestGUI(this);
+        MafiaGameWindow gui = new MafiaGameWindow(this);
     }
     
     public void initCountries() {
@@ -45,12 +47,12 @@ public class Main {
         countries.add(new USA());
     }
     
-    public void setCountry(Country country) {
+    public void setCountry(CountryInterface country) {
         currentCountry = country;
         country.setPlayer(player);
     }
     
-    public Country getCurrentCountry() {
+    public CountryInterface getCurrentCountry() {
         return currentCountry;
     }
     
@@ -58,16 +60,16 @@ public class Main {
         return player;
     }
     
-    public ArrayList<Country> getCountries() {
+    public ArrayList<CountryInterface> getCountries() {
         return countries;
     }
     
-    public ArrayList<Event> getEvents() {
+    public ArrayList<EventInterface> getEvents() {
         return events;
     }
     
-    public Country getCountry(String name) {
-        for (Country c : countries) {
+    public CountryInterface getCountry(String name) {
+        for (CountryInterface c : countries) {
             String countryName = c.getClass().toString().replaceAll("class model.country.", "");
             if (countryName.equals(name)) {
                 return c;

@@ -5,13 +5,13 @@
  */
 package model.drug;
 
-import model.*;
+import control.DrugInterface;
 
 /**
  *
  * @author CHRIS
  */
-public class Cocaine implements Drug {
+public class Cocaine implements DrugInterface {
 
     int price;
     int amount;

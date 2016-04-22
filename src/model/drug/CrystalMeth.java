@@ -5,13 +5,13 @@
  */
 package model.drug;
 
-import model.*;
+import control.DrugInterface;
 
 /**
  *
  * @author CHRIS
  */
-public class CrystalMeth implements Drug {
+public class CrystalMeth implements DrugInterface {
 
     int price;
     int amount;
