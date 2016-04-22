@@ -51,7 +51,17 @@ public class Player {
         return drugs;
     }
     
+    public void addDrug(String name, int amount) {
+        
+    }
+    
     public void addDrug(DrugInterface drug) {
+        for (DrugInterface d : drugs) {
+            if (d.getName().equals(drug)) {
+                d.add(drug.getAmount());
+                return;
+            }
+        }
         drugs.add(drug);
     }
     
