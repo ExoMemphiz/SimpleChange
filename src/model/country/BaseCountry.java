@@ -71,6 +71,14 @@ public class BaseCountry implements CountryInterface  {
         return -1;
     }
     
+    /**
+     * This is only removing the drug amount from the country, if the player has enough money for it at the runtime.
+     * @param drugName
+     * @param amount
+     * @param playerMoney
+     * @return true as done or throws an exception of why buying was not possible.
+     * @throws Exception 
+     */
     public boolean buyDrug(String drugName, int amount, int playerMoney) throws Exception {
         if (playerMoney >= getPrice(drugName, amount)) {
             DrugInterface d = getDrug(drugName);

@@ -38,18 +38,41 @@ public class MafiaGameWindow extends javax.swing.JFrame {
     }
     
     /**
-     * 
-     * @return 
+     * Get's the correct substringed name of the current selected buying drug.
+     * @return String as Drugname
      */
     public String getSelectedBuyingDrugName() {
         String selected = jComboBoxBuyingDrugs.getSelectedItem().toString();
         return selected.substring(0, selected.indexOf("-") - 1);
     }
     
+    /**
+     * Get's the buying Slider Drug Amount.
+     * @return selectedAmount
+     */
+    public int getSelectedBuyingDrugAmount() {
+        int selectedAmount = jSliderBuyDrugs.getValue();
+        return selectedAmount;
+    }
+    
+    /**
+     * Get's the correct substringed name of the current selected buying drug. 
+     * @return String as Drugname
+     */
     public String getSelectedSellingDrugName() {
         String selected = jComboBoxSellingDrugs.getSelectedItem().toString();
         return selected.substring(0, selected.indexOf("-") - 1);
     }
+    
+    /**
+     * Get's the selling Slider Drug Amount.
+     * @return selectedAmount
+     */
+    public int getSelectedSellingDrugAmount() {
+        int selectedAmount = jSliderSellDrugs.getValue();
+        return selectedAmount;
+    }
+
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -295,8 +318,7 @@ public class MafiaGameWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxCountriesItemStateChanged
 
     private void jButtonBuyDrugsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuyDrugsActionPerformed
-        mainGame.buyDrugsFromCountry ( getSelectedBuyingDrugName(), getSelectedBuyingDrugAmount() );
-        
+        mainGame.buyDrugFromCurrentCountryToPlayer( getSelectedBuyingDrugName(), getSelectedBuyingDrugAmount() );
     }//GEN-LAST:event_jButtonBuyDrugsActionPerformed
 
     private void jButtonSellDrugsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSellDrugsActionPerformed

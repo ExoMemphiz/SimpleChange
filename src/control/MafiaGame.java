@@ -115,16 +115,45 @@ public class MafiaGame {
     }
 
     public int getPlayerCurrentDrugAmount(String selectedSellingDrugName) {
-        DrugInterface d = getPlayer().getDrug( selectedSellingDrugName );
-        int amount = d.getAmount();
+        DrugInterface drug = getPlayer().getDrug( selectedSellingDrugName );
+        int amount = drug.getAmount();
         return amount;
     }
 
     public int getCountryCurrentDrugAmount(String selectedBuyingDrugName) {
         CountryInterface country = getCurrentCountry();
-        DrugInterface d = country.getDrug( selectedBuyingDrugName );
-        int amount = d.getAmount();
+        DrugInterface drug = country.getDrug( selectedBuyingDrugName );
+        int amount = drug.getAmount();
         return amount;
+    }
+
+    /**
+     * Buys the drug from the country to the player, if the player can afford it.
+     * @param selectedBuyingDrugName
+     * @param selectedBuyingDrugAmount
+     * @return String status of buying result
+     */
+    public String buyDrugFromCurrentCountryToPlayer(String selectedBuyingDrugName, int selectedBuyingDrugAmount) {
+        CountryInterface country = getCurrentCountry();
+        String resultMessage = "You have now bought you drug, get ready to sell";
+        
+        //Removes the drug amount from country
+        try {
+            country.buyDrug(selectedBuyingDrugName, selectedBuyingDrugAmount, getPlayer().getMoney() );
+        } catch (Exception e) {
+            resultMessage = e.getMessage();
+        }
+        
+        DrugInterface playerNewDrug;
+        
+        ??
+                
+        playerNewDrug.setAmount(selectedBuyingDrugAmount);
+        
+        getPlayer().addDrug(playerNewDrug);
+        
+        
+        return resultMessage;
     }
     
 }
