@@ -9,11 +9,9 @@ import control.MafiaGame;
 import model.Player;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import model.CountryInterface;
-import model.DrugInterface;
 import model.country.BaseCountry;
 import model.drug.BaseDrug;
 
@@ -100,10 +98,10 @@ public class MafiaGameWindow extends javax.swing.JFrame {
         Player player = mainGame.getPlayer();
         ArrayList<BaseDrug> playerDrugs = player.getDrugs();
         CountryInterface country = mainGame.getCurrentCountry();
-        ArrayList<DrugInterface> countryDrugs = country.getDrugs();
+        ArrayList<BaseDrug> countryDrugs = country.getDrugs();
         for (int i = 0; i < playerDrugs.size(); i++) {
-            DrugInterface d = playerDrugs.get(i);
-            for (DrugInterface cDrug : countryDrugs) {
+            BaseDrug d = playerDrugs.get(i);
+            for (BaseDrug cDrug : countryDrugs) {
                 if (d.getName().equals(cDrug.getName())) {
                     if (d.getAmount() > 0) {
                         model.addElement(d.getName() + " - " + cDrug.getPrice());
@@ -119,9 +117,9 @@ public class MafiaGameWindow extends javax.swing.JFrame {
         DefaultComboBoxModel model = new DefaultComboBoxModel();
         model.removeAllElements();
         CountryInterface country = mainGame.getCurrentCountry();
-        ArrayList<DrugInterface> drugs = country.getDrugs();
+        ArrayList<BaseDrug> drugs = country.getDrugs();
         for (int i = 0; i < drugs.size(); i++) {
-            DrugInterface d = drugs.get(i);
+            BaseDrug d = drugs.get(i);
             if (d.getAmount() > 0) {
                 model.addElement(d.getName() + " - " + d.getPrice());
             }
@@ -172,6 +170,7 @@ public class MafiaGameWindow extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jButtonTravel = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
+        jButtonPrintAllDrugPrices = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -372,15 +371,28 @@ public class MafiaGameWindow extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Travel", jPanel2);
 
+        jButtonPrintAllDrugPrices.setText("Print All Drug Prices");
+        jButtonPrintAllDrugPrices.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPrintAllDrugPricesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 395, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButtonPrintAllDrugPrices)
+                .addContainerGap(268, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 272, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButtonPrintAllDrugPrices)
+                .addContainerGap(258, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Extra", jPanel3);
@@ -467,8 +479,22 @@ public class MafiaGameWindow extends javax.swing.JFrame {
         updateModelBoxes();
     }//GEN-LAST:event_jButtonTravelActionPerformed
 
+    private void jButtonPrintAllDrugPricesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPrintAllDrugPricesActionPerformed
+        ArrayList<BaseCountry> countries = mainGame.getCountries();
+        for (int i = 0; i < countries.size(); i++) {
+            BaseCountry c = countries.get(i);
+            ArrayList<BaseDrug> drugs = c.getDrugs();
+            System.out.println("---- " + c.getName() + " ----");
+            for (int j = 0; j < drugs.size(); j++) {
+                BaseDrug d = drugs.get(j);
+                System.out.println(d.getName() + ", Price: " + d.getPrice() + ", Amount: " + d.getAmount());
+            }
+        }
+    }//GEN-LAST:event_jButtonPrintAllDrugPricesActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBuyDrugs;
+    private javax.swing.JButton jButtonPrintAllDrugPrices;
     private javax.swing.JButton jButtonSellDrugs;
     private javax.swing.JButton jButtonTravel;
     private javax.swing.JButton jButtonUpdatePlayerInventoryTest;

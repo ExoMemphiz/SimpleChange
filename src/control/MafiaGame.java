@@ -51,9 +51,13 @@ public class MafiaGame {
     }
     
     public void Travel(BaseCountry country) {     //TODO! Missing calling all events and other triggers upon travel!
-        
         advanceTurn();  //Important to do in this order, or Countries will not update their stock and prices
         setCountry(country);
+        for (BaseCountry c : countries) {
+            System.out.println("Initializing country: " + c.getName());
+            c.setPlayer(player);
+            c.init();
+        }
     }
     
     public void setCountry(BaseCountry country) {

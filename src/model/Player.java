@@ -6,8 +6,6 @@
 package model;
 
 import java.util.ArrayList;
-import model.country.*;
-import model.DrugInterface;
 import model.drug.BaseDrug;
 
 /**
@@ -17,7 +15,7 @@ import model.drug.BaseDrug;
 public class Player {
  
     private int currentTurn = 0;
-    private String name;
+    private final String name;
     private int money;
     private ArrayList<BaseDrug> drugs;
 
@@ -69,7 +67,7 @@ public class Player {
         drugs.add(drug);
     }
     
-    public void removeDrug(DrugInterface drug, int amount) {
+    public void removeDrug(BaseDrug drug, int amount) {
         for (DrugInterface d : drugs) {
             if (d.getName().equals(drug.getName())) {
                 d.remove(amount);
@@ -77,7 +75,7 @@ public class Player {
         }
     }
     
-    public void sellDrug(DrugInterface drug, int amountSold, int moneyEarned) {
+    public void sellDrug(BaseDrug drug, int amountSold, int moneyEarned) {
         money += moneyEarned;
         removeDrug(drug, amountSold);
     }
