@@ -140,6 +140,11 @@ public class TestGUI extends javax.swing.JFrame {
         jLabelCurrentMoney.setText("Current money:");
 
         jButtonBuyDrugs.setText("Buy drugs (0)");
+        jButtonBuyDrugs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBuyDrugsActionPerformed(evt);
+            }
+        });
 
         jSliderBuyDrugs.setMajorTickSpacing(10);
         jSliderBuyDrugs.setMaximum(60);
@@ -163,6 +168,11 @@ public class TestGUI extends javax.swing.JFrame {
         });
 
         jButtonSellDrugs.setText("Sell drugs (0)");
+        jButtonSellDrugs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSellDrugsActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -319,6 +329,14 @@ public class TestGUI extends javax.swing.JFrame {
     private void jComboBoxBuyingDrugs1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxBuyingDrugs1ItemStateChanged
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxBuyingDrugs1ItemStateChanged
+
+    private void jButtonBuyDrugsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuyDrugsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonBuyDrugsActionPerformed
+
+    private void jButtonSellDrugsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSellDrugsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonSellDrugsActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBuyDrugs;

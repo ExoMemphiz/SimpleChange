@@ -202,6 +202,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Buy drugs (0)"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonBuyDrugsActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JSlider" name="jSliderBuyDrugs">
               <Properties>
@@ -230,6 +233,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Sell drugs (0)"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSellDrugsActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

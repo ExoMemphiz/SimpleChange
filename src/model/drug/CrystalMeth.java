@@ -13,7 +13,8 @@ import model.*;
  */
 public class CrystalMeth implements Drug {
 
-    int price, amount;
+    int price;
+    int amount;
 
     public CrystalMeth(int price, int amount) {
         this.price = price;

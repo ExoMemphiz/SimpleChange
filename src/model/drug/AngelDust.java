@@ -13,7 +13,8 @@ import model.Drug;
  */
 public class AngelDust implements Drug {
 
-    int price, amount;
+    int price;
+    int amount;
 
     public AngelDust(int price, int amount) {
         this.price = price;

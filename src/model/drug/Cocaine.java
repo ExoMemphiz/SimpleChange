@@ -13,7 +13,8 @@ import model.*;
  */
 public class Cocaine implements Drug {
 
-    int price, amount;
+    int price;
+    int amount;
 
     public Cocaine(int price, int amount) {
         this.price = price;
