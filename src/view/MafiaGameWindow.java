@@ -15,6 +15,7 @@ import javax.swing.UIManager;
 import model.CountryInterface;
 import model.DrugInterface;
 import model.country.BaseCountry;
+import model.drug.BaseDrug;
 
 /**
  *
@@ -90,13 +91,14 @@ public class MafiaGameWindow extends javax.swing.JFrame {
         jSliderSellDrugs.setMaximum(amount);
         jLabelWelcomeText.setText("Welcome to " + mainGame.getCurrentCountry().getName() + "!");
         jComboBoxCountries.setModel(getTravelModel());
+        jLabelCurrentTurn.setText("Current turn: " + mainGame.getTurn());
     }
 
     public DefaultComboBoxModel getSellDrugModel() {
         DefaultComboBoxModel model = new DefaultComboBoxModel();
         model.removeAllElements();
         Player player = mainGame.getPlayer();
-        ArrayList<DrugInterface> playerDrugs = player.getDrugs();
+        ArrayList<BaseDrug> playerDrugs = player.getDrugs();
         CountryInterface country = mainGame.getCurrentCountry();
         ArrayList<DrugInterface> countryDrugs = country.getDrugs();
         for (int i = 0; i < playerDrugs.size(); i++) {
@@ -164,6 +166,7 @@ public class MafiaGameWindow extends javax.swing.JFrame {
         jSliderSellDrugs = new javax.swing.JSlider();
         jButtonSellDrugs = new javax.swing.JButton();
         jButtonUpdatePlayerInventoryTest = new javax.swing.JButton();
+        jLabelCurrentTurn = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jComboBoxCountries = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
@@ -241,6 +244,8 @@ public class MafiaGameWindow extends javax.swing.JFrame {
             }
         });
 
+        jLabelCurrentTurn.setText("Current turn: ");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -272,7 +277,9 @@ public class MafiaGameWindow extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(20, 20, 20)
-                                .addComponent(jButtonBuyDrugs, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabelCurrentTurn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButtonBuyDrugs, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -309,7 +316,9 @@ public class MafiaGameWindow extends javax.swing.JFrame {
                     .addComponent(jButtonBuyDrugs)
                     .addComponent(jButtonSellDrugs))
                 .addGap(24, 24, 24)
-                .addComponent(jButtonUpdatePlayerInventoryTest)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonUpdatePlayerInventoryTest)
+                    .addComponent(jLabelCurrentTurn))
                 .addContainerGap())
         );
 
@@ -470,6 +479,7 @@ public class MafiaGameWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabelCurrentMoney;
+    private javax.swing.JLabel jLabelCurrentTurn;
     private javax.swing.JLabel jLabelWelcomeText;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
