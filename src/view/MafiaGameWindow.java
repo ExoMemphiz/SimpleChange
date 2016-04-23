@@ -173,21 +173,42 @@ public class MafiaGameWindow extends javax.swing.JFrame {
         return model;
     }
     
-    public DefaultTableModel updateHighScores() {
+    /**
+     * Updates the High Scores table with data inserted like normal european reading direction.
+     * @see getHighScoresFromDatabase() in control.MafiaGame
+     */
+    public void updateHighScores() {
         
         DefaultTableModel tModel = new DefaultTableModel();
         
         ArrayList<String> scores = mainGame.getHighScoresFromDatabase(); //Getting Strings from database
         
-        scores = new ArrayList("Hej","This","is","a","test"); //For testing
+        scores = new ArrayList();                           //TEST
+        scores.add("hej");                                  //TEST
+        scores.add("hej2");                                 //TEST
+        scores.add("hej3");                                 //TEST
+        scores.add("hej4");                                 //TEST
+        scores.add("hej5");                                 //TEST
+        scores.add("hej6");                                 //TEST
         
-        tModel.addColumn("Username");
-        tModel.addColumn("Scores");
-        for (String string : scores) { //Adding strings to the tables
-            tModel.addRow(string);
-            
-            
+        tModel.addColumn("Username");                       //Creates the username column in the modle
+        tModel.addColumn("Scores");                         //Create the score column in the model
+        tModel.setRowCount( (scores.size() / 2) + 1 );      //Making the table long enugh to import varias data
+        int rowCounter = 0;                                 //Initializing a row counter for changing row the correct time after all columns in row is filled
+        int columnCounter = 0;                              //Initializing a column counter for getting data correct in
+        System.out.println(tModel.getColumnCount());        //TEST
+        for (String string : scores) {                      //Looping every String from database
+            System.out.println("row insert: " + string);    //Print is for test porpose and error finding.
+            tModel.setValueAt(string, rowCounter, columnCounter); //This was the old way = tModel.insertRow(p, new Object[] { string }); // Insert a row at position p
+            if ( columnCounter == 1 ) {
+                rowCounter++;
+                columnCounter = 0;
+            }
+            else if ( !(columnCounter == 1) ) {
+                columnCounter++;                                //Increment columCountrer all the time, because it is like the eyes of a reading person.
+            }
         }
+        jTableHighScore.setModel(tModel); //Inserting the prereadied table to the GUI.
         
     }
     
@@ -226,6 +247,7 @@ public class MafiaGameWindow extends javax.swing.JFrame {
         jButtonTravel = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jButtonPrintAllDrugPrices = new javax.swing.JButton();
+        jButtonTestHighScore = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabelHighScoreHeadline = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -378,6 +400,15 @@ public class MafiaGameWindow extends javax.swing.JFrame {
         });
         jPanel3.add(jButtonPrintAllDrugPrices, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, 200, -1));
 
+        jButtonTestHighScore.setText("Test High Score");
+        jButtonTestHighScore.setToolTipText("");
+        jButtonTestHighScore.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonTestHighScoreActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButtonTestHighScore, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 200, -1));
+
         jTabbedPane1.addTab("Extra", jPanel3);
 
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -497,10 +528,16 @@ public class MafiaGameWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonPrintAllDrugPricesActionPerformed
 
+    private void jButtonTestHighScoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTestHighScoreActionPerformed
+        updateHighScores();
+        
+    }//GEN-LAST:event_jButtonTestHighScoreActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBuyDrugs;
     private javax.swing.JButton jButtonPrintAllDrugPrices;
     private javax.swing.JButton jButtonSellDrugs;
+    private javax.swing.JButton jButtonTestHighScore;
     private javax.swing.JButton jButtonTravel;
     private javax.swing.JButton jButtonUpdatePlayerInventoryTest;
     private javax.swing.JComboBox<String> jComboBoxBuyingDrugs;

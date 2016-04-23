@@ -161,5 +161,13 @@ public class MafiaGame {
         BaseDrug newPlayerDrug = new BaseDrug(0, drugAmount).getNewBaseDrug(drugName);
         player.sellDrug(newPlayerDrug, drugAmount, price);
     }
+
+    /**
+     * For 
+     * @return 
+     */
+    public ArrayList<String> getHighScoresFromDatabase() {
+        return new ArrayList<String>();
+    }
     
 }
