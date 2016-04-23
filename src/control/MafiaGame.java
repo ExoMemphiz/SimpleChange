@@ -12,6 +12,7 @@ import model.event.*;
 import model.*;
 import view.MafiaGameWindow;
 import control.*;
+import java.io.IOException;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 
@@ -21,24 +22,33 @@ import javax.swing.DefaultComboBoxModel;
  * @author CHRIS
  */
 public class MafiaGame {
- 
+    
     private Player player;
     private int currentTurn = 0;
     private BaseCountry currentCountry;
     private ArrayList<BaseCountry> countries;
     private ArrayList<EventInterface> events;
+    private ArrayList<Highscore> highscore;
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         MafiaGame main = new MafiaGame();
     }
 
-    public MafiaGame() {
+    public MafiaGame() throws IOException {
+        highscore = DatabaseHandler.read();
+        printHighscore();
         initCountries();
         initEvents();
-        player = new Player("Peter the Gangster", 50000000);
+        player = new Player("Peter the Gangster", 5000);
         BaseCountry denmark = getCountry("Denmark");
         setCountry(denmark);
         MafiaGameWindow mafiaGameGui = new MafiaGameWindow(this);
+    }
+    
+    public void printHighscore() {
+        for (Highscore h : highscore) {
+            System.out.println(h.toString());
+        }
     }
     
     public void initCountries() {

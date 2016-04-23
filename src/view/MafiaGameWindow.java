@@ -101,7 +101,11 @@ public class MafiaGameWindow extends javax.swing.JFrame {
         if (health == 0 || mainGame.getTurn() >= 20) {
             endGame();
             this.dispose();
-            mainGame = new MafiaGame();
+            try {
+                mainGame = new MafiaGame();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
