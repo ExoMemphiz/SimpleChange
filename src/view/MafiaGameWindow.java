@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import javax.swing.table.DefaultTableModel;
 import model.country.BaseCountry;
 import model.drug.BaseDrug;
 
@@ -170,6 +171,24 @@ public class MafiaGameWindow extends javax.swing.JFrame {
             }
         }
         return model;
+    }
+    
+    public DefaultTableModel updateHighScores() {
+        
+        DefaultTableModel tModel = new DefaultTableModel();
+        
+        ArrayList<String> scores = mainGame.getHighScoresFromDatabase(); //Getting Strings from database
+        
+        scores = new ArrayList("Hej","This","is","a","test"); //For testing
+        
+        tModel.addColumn("Username");
+        tModel.addColumn("Scores");
+        for (String string : scores) { //Adding strings to the tables
+            tModel.addRow(string);
+            
+            
+        }
+        
     }
     
     /**
