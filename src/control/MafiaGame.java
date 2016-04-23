@@ -13,6 +13,7 @@ import model.*;
 import view.MafiaGameWindow;
 import control.*;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ComboBoxModel;
@@ -167,6 +168,7 @@ public class MafiaGame {
      * @return 
      */
     public ArrayList<Highscore> getHighscores() {
+        Collections.sort(highscore);
         return highscore;
     }
     

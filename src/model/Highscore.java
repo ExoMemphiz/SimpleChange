@@ -9,7 +9,7 @@ package model;
  *
  * @author Chris
  */
-public class Highscore {
+public class Highscore implements Comparable<Highscore> {
 
     private final String name;
     private final int points;
@@ -36,6 +36,16 @@ public class Highscore {
     @Override
     public String toString() {
         return name + ": " + points;
+    }
+
+    @Override
+    public int compareTo(Highscore o) {
+        if (getPoints() == o.getPoints()) {
+            return 0;
+        } else if (getPoints() > o.getPoints()) {
+            return -1;
+        }
+        return 1;
     }
     
 }
