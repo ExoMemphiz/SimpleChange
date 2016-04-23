@@ -110,6 +110,7 @@ public class MafiaGameWindow extends javax.swing.JFrame {
                 e.printStackTrace();
             }
         }
+        updateHighScores();
     }
 
     public void endGame() {
@@ -190,6 +191,7 @@ public class MafiaGameWindow extends javax.swing.JFrame {
             tModel.setValueAt(highscore.getPoints(), i, 1);
         }
         jTableHighScore.setModel(tModel); //Inserting the prereadied table to the GUI.
+        jTableHighScore.setEnabled(false);
     }
     
     /**
