@@ -32,8 +32,6 @@ public class CustomsAuthorityEvent extends CountryEvent {
         JOptionPane.showMessageDialog(null, "You have been taken by the Customs Authority!" + System.lineSeparator() +
                                             "Half of all your drugs have been taken" + System.lineSeparator() + 
                                             "And you lose 10% of your health!");
-        
-        
     }
 
     @Override

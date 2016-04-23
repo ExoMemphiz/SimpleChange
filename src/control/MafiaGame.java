@@ -166,8 +166,8 @@ public class MafiaGame {
      * For 
      * @return 
      */
-    public ArrayList<String> getHighScoresFromDatabase() {
-        return new ArrayList<String>();
+    public ArrayList<Highscore> getHighscores() {
+        return highscore;
     }
     
 }

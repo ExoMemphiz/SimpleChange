@@ -14,6 +14,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
+import model.Highscore;
 import model.country.BaseCountry;
 import model.drug.BaseDrug;
 
@@ -178,38 +179,17 @@ public class MafiaGameWindow extends javax.swing.JFrame {
      * @see getHighScoresFromDatabase() in control.MafiaGame
      */
     public void updateHighScores() {
-        
         DefaultTableModel tModel = new DefaultTableModel();
-        
-        ArrayList<String> scores = mainGame.getHighScoresFromDatabase(); //Getting Strings from database
-        
-        scores = new ArrayList();                           //TEST
-        scores.add("hej");                                  //TEST
-        scores.add("hej2");                                 //TEST
-        scores.add("hej3");                                 //TEST
-        scores.add("hej4");                                 //TEST
-        scores.add("hej5");                                 //TEST
-        scores.add("hej6");                                 //TEST
-        
+        ArrayList<Highscore> highscores = mainGame.getHighscores(); //Get highscores
         tModel.addColumn("Username");                       //Creates the username column in the modle
         tModel.addColumn("Scores");                         //Create the score column in the model
-        tModel.setRowCount( (scores.size() / 2) + 1 );      //Making the table long enugh to import varias data
-        int rowCounter = 0;                                 //Initializing a row counter for changing row the correct time after all columns in row is filled
-        int columnCounter = 0;                              //Initializing a column counter for getting data correct in
-        System.out.println(tModel.getColumnCount());        //TEST
-        for (String string : scores) {                      //Looping every String from database
-            System.out.println("row insert: " + string);    //Print is for test porpose and error finding.
-            tModel.setValueAt(string, rowCounter, columnCounter); //This was the old way = tModel.insertRow(p, new Object[] { string }); // Insert a row at position p
-            if ( columnCounter == 1 ) {
-                rowCounter++;
-                columnCounter = 0;
-            }
-            else if ( !(columnCounter == 1) ) {
-                columnCounter++;                                //Increment columCountrer all the time, because it is like the eyes of a reading person.
-            }
+        tModel.setRowCount(highscores.size());      //Making the table long enugh to import varias data
+        for (int i = 0; i < highscores.size(); i++) {
+            Highscore highscore = highscores.get(i);
+            tModel.setValueAt(highscore.getName(), i, 0);
+            tModel.setValueAt(highscore.getPoints(), i, 1);
         }
         jTableHighScore.setModel(tModel); //Inserting the prereadied table to the GUI.
-        
     }
     
     /**
