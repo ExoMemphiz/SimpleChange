@@ -17,6 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 
 /**
  * 
@@ -41,7 +42,8 @@ public class MafiaGame {
         printHighscore();
         initCountries();
         initEvents();
-        player = new Player("Peter the Gangster", 5000);
+        String playerName = JOptionPane.showInputDialog("Please type your name", "firstname lastname");
+        player = new Player(playerName, 5000);
         BaseCountry denmark = getCountry("Denmark");
         setCountry(denmark);
         MafiaGameWindow mafiaGameGui = new MafiaGameWindow(this);
