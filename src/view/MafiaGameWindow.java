@@ -183,6 +183,8 @@ public class MafiaGameWindow extends javax.swing.JFrame {
 
         jPanel4 = new javax.swing.JPanel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabelWelcomeText = new javax.swing.JLabel();
@@ -207,6 +209,21 @@ public class MafiaGameWindow extends javax.swing.JFrame {
         jButtonPrintAllDrugPrices = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabelHighScoreHeadline = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTableHighScore = new javax.swing.JTable();
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -344,8 +361,40 @@ public class MafiaGameWindow extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Extra", jPanel3);
 
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabelHighScoreHeadline.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabelHighScoreHeadline.setText("High Scores in the Mafia Game");
-        jPanel5.add(jLabelHighScoreHeadline);
+        jPanel5.add(jLabelHighScoreHeadline, new org.netbeans.lib.awtextra.AbsoluteConstraints(165, 5, -1, -1));
+
+        jTableHighScore.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Name", "Score"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTableHighScore.setColumnSelectionAllowed(true);
+        jScrollPane2.setViewportView(jTableHighScore);
+        jTableHighScore.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+
+        jPanel5.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 580, 250));
 
         jTabbedPane1.addTab("High Score", jPanel5);
 
@@ -452,9 +501,13 @@ public class MafiaGameWindow extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JProgressBar jProgressBarCurrentHP;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSlider jSliderBuyDrugs;
     private javax.swing.JSlider jSliderSellDrugs;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableHighScore;
     // End of variables declaration//GEN-END:variables
 }
