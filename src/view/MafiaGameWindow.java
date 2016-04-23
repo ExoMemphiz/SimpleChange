@@ -184,10 +184,6 @@ public class MafiaGameWindow extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel3 = new javax.swing.JPanel();
-        jButtonPrintAllDrugPrices = new javax.swing.JButton();
-        jPanel5 = new javax.swing.JPanel();
-        jLabelHighScoreHeadline = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabelWelcomeText = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -207,26 +203,13 @@ public class MafiaGameWindow extends javax.swing.JFrame {
         jComboBoxCountries = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         jButtonTravel = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jButtonPrintAllDrugPrices = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        jLabelHighScoreHeadline = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jButtonPrintAllDrugPrices.setText("Print All Drug Prices");
-        jButtonPrintAllDrugPrices.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonPrintAllDrugPricesActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButtonPrintAllDrugPrices, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, 200, -1));
-
-        jTabbedPane1.addTab("Extra", jPanel3);
-
-        jLabelHighScoreHeadline.setText("High Scores in the Mafia Game");
-        jPanel5.add(jLabelHighScoreHeadline);
-
-        jTabbedPane1.addTab("High Score", jPanel5);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -348,6 +331,23 @@ public class MafiaGameWindow extends javax.swing.JFrame {
         jPanel2.add(jButtonTravel, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 90, 90, -1));
 
         jTabbedPane1.addTab("Travel", jPanel2);
+
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jButtonPrintAllDrugPrices.setText("Print All Drug Prices");
+        jButtonPrintAllDrugPrices.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPrintAllDrugPricesActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButtonPrintAllDrugPrices, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, 200, -1));
+
+        jTabbedPane1.addTab("Extra", jPanel3);
+
+        jLabelHighScoreHeadline.setText("High Scores in the Mafia Game");
+        jPanel5.add(jLabelHighScoreHeadline);
+
+        jTabbedPane1.addTab("High Score", jPanel5);
 
         getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 620, 350));
 
