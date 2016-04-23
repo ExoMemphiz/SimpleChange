@@ -5,6 +5,8 @@
  */
 package model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author CHRIS
@@ -13,6 +15,7 @@ public interface EventInterface {
  
     /**
      * 
+     * @return 
      */
     public abstract void effect(Player player);
     public abstract boolean shouldFire(Player player);

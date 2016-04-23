@@ -181,6 +181,8 @@ public class MafiaGameWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel4 = new javax.swing.JPanel();
+        jTabbedPane2 = new javax.swing.JTabbedPane();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabelWelcomeText = new javax.swing.JLabel();
@@ -203,6 +205,7 @@ public class MafiaGameWindow extends javax.swing.JFrame {
         jButtonTravel = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jButtonPrintAllDrugPrices = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -337,8 +340,9 @@ public class MafiaGameWindow extends javax.swing.JFrame {
         jPanel3.add(jButtonPrintAllDrugPrices, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
 
         jTabbedPane1.addTab("Extra", jPanel3);
+        jTabbedPane1.addTab("High Score", jPanel5);
 
-        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, 320));
+        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 420, 350));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -437,9 +441,12 @@ public class MafiaGameWindow extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JProgressBar jProgressBarCurrentHP;
     private javax.swing.JSlider jSliderBuyDrugs;
     private javax.swing.JSlider jSliderSellDrugs;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTabbedPane jTabbedPane2;
     // End of variables declaration//GEN-END:variables
 }
