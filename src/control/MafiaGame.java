@@ -13,6 +13,8 @@ import model.*;
 import view.MafiaGameWindow;
 import control.*;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 
@@ -43,6 +45,10 @@ public class MafiaGame {
         BaseCountry denmark = getCountry("Denmark");
         setCountry(denmark);
         MafiaGameWindow mafiaGameGui = new MafiaGameWindow(this);
+    }
+    
+    public void EndGame() throws IOException {
+        DatabaseHandler.write(player.getName(), "" + player.getMoney());
     }
     
     public void printHighscore() {

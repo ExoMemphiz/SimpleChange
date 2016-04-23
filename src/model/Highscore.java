@@ -16,7 +16,7 @@ public class Highscore {
     
     public Highscore(String parseLine) {
         int index = parseLine.indexOf(",");
-        name = parseLine.substring(0, index);
+        name = parseLine.substring(0, index).replaceAll("_", " ");
         points = Integer.parseInt(parseLine.substring(index + 1));
     }
     

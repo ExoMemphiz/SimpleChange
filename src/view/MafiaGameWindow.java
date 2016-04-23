@@ -102,6 +102,7 @@ public class MafiaGameWindow extends javax.swing.JFrame {
             endGame();
             this.dispose();
             try {
+                mainGame.EndGame();
                 mainGame = new MafiaGame();
             } catch (Exception e) {
                 e.printStackTrace();
