@@ -27,7 +27,7 @@ public class MafiaGame {
     private int currentTurn = 0;
     private BaseCountry currentCountry;
     private ArrayList<BaseCountry> countries;
-    private ArrayList<EventInterface> events;
+    private ArrayList<CountryEvent> events;
     private ArrayList<Highscore> highscore;
     
     public static void main(String[] args) throws IOException {
@@ -63,7 +63,7 @@ public class MafiaGame {
     
     public void initEvents() {
         events = new ArrayList<>();
-        events.add(new CustomsAuthorityEvent());
+        events.add( new CustomsAuthorityEvent() );
     }
     
     public void Travel(BaseCountry country) {     //TODO! Missing calling all events and other triggers upon travel!
@@ -73,7 +73,7 @@ public class MafiaGame {
             c.setPlayer(player);
             c.init();
         }
-        for (EventInterface e : events) {
+        for (CountryEvent e : events) {
             if (e.shouldFire(player)) {
                 e.effect(player);
             }
@@ -106,7 +106,7 @@ public class MafiaGame {
         return countries;
     }
     
-    public ArrayList<EventInterface> getEvents() {
+    public ArrayList<CountryEvent> getEvents() {
         return events;
     }
     
