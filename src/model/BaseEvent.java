@@ -11,11 +11,15 @@ import java.util.Random;
  *
  * @author scheldejonas
  */
-public class BaseEvent {
+public abstract class BaseEvent {
+    
+    private int firePercentage;
 
-    public void effect(Player player) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public BaseEvent() {
+        this.firePercentage = 5;
     }
+
+    public abstract void effect(Player player);
 
     /**
      * Default chance is 5%, override if other percentage is needed
@@ -25,7 +29,15 @@ public class BaseEvent {
     public boolean shouldFire(Player player) {
         Random r = new Random();
         int random = r.nextInt(100);
-        return random <= 5;
+        return random <= firePercentage;
+    }
+
+    public int getFirePercentage() {
+        return firePercentage;
+    }
+
+    public void setFirePercentage(int firePercentage) {
+        this.firePercentage = firePercentage;
     }
     
 }
