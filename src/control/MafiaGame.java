@@ -178,7 +178,14 @@ public class MafiaGame {
      * @param lifeBought 
      */
     public void buyLife(int lifeBought) {
-        //To do
+        int lifeCost = lifeBought * getCurrentCountry().getHealthPrice();   //check afford
+        int currentWallet = player.getMoney();
+        if ( currentWallet >= lifeCost ) { //if afford - do buying
+            player.healDamage( lifeBought );
+        }
+        else if ( currentWallet < lifeCost ) { //if not afford - exception throwed
+            throws new Exception("You don't have enough money to buy this amount of life.");
+        }
     }
     
 }
