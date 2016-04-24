@@ -105,6 +105,7 @@ public class MafiaGameWindow extends javax.swing.JFrame {
         jSliderBuyLife.setMaximum(healSlider);
         jSliderBuyLife.setMinorTickSpacing(minorTicks);
         jSliderBuyLife.setMajorTickSpacing(majorTicks);
+        jSliderBuyLife.setValue(0);
         int lifeCost = mainGame.getCurrentCountry().getHealthPrice();
         jLabelLifeCost.setText("Life: $" + lifeCost + " pr. %");
         jLabelWelcomeText.setText("Welcome to " + mainGame.getCurrentCountry().getName() + "!");
