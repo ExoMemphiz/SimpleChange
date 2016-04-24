@@ -250,6 +250,10 @@ public class MafiaGameWindow extends javax.swing.JFrame {
         jComboBoxCountries = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         jButtonTravel = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jButtonPrintAllDrugPrices = new javax.swing.JButton();
         jButtonTestHighScore = new javax.swing.JButton();
@@ -409,6 +413,21 @@ public class MafiaGameWindow extends javax.swing.JFrame {
             }
         });
         jPanel2.add(jButtonTravel, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 90, 90, -1));
+
+        jButton1.setText("Buy Access into Yakuza");
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, -1, -1));
+
+        jLabel5.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("Travel by High Friends");
+        jLabel5.setToolTipText("");
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 560, -1));
+
+        jLabel6.setText("Effect: 2% less chance of getting caught");
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 240, -1, -1));
+
+        jLabel7.setText("Price: $10.000");
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 210, -1, -1));
 
         jTabbedPane1.addTab("Travel", jPanel2);
 
@@ -594,6 +613,7 @@ public class MafiaGameWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonBuyLifeActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonBuyDrugs;
     private javax.swing.JButton jButtonBuyLife;
     private javax.swing.JButton jButtonPrintAllDrugPrices;
@@ -609,6 +629,9 @@ public class MafiaGameWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabelCurrentMoney;
     private javax.swing.JLabel jLabelCurrentTurn;
     private javax.swing.JLabel jLabelHighScoreHeadline;
