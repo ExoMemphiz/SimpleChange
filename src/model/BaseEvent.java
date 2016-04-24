@@ -11,7 +11,7 @@ import java.util.Random;
  *
  * @author scheldejonas
  */
-public class CountryEvent {
+public class BaseEvent {
 
     public void effect(Player player) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

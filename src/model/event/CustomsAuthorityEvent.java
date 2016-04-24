@@ -5,7 +5,7 @@
  */
 package model.event;
 
-import model.CountryEvent;
+import model.BaseEvent;
 import javax.swing.JOptionPane;
 import model.Player;
 import model.BaseDrug;
@@ -14,7 +14,7 @@ import model.BaseDrug;
  *
  * @author CHRIS
  */
-public class CustomsAuthorityEvent extends CountryEvent {
+public class CustomsAuthorityEvent extends BaseEvent {
 
     @Override
     public void effect(Player player) {

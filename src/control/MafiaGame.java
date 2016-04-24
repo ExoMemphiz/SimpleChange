@@ -5,7 +5,7 @@
  */
 package control;
 
-import model.CountryEvent;
+import model.BaseEvent;
 import model.BaseCountry;
 import model.BaseDrug;
 import java.util.ArrayList;
@@ -30,7 +30,7 @@ public final class MafiaGame {
     private int currentTurn = 0;
     private BaseCountry currentCountry;
     private ArrayList<BaseCountry> countries;
-    private ArrayList<CountryEvent> events;
+    private ArrayList<BaseEvent> events;
     private ArrayList<Highscore> highscore;
     
     public static void main(String[] args) throws IOException {
@@ -89,7 +89,7 @@ public final class MafiaGame {
             c.setPlayer(player);
             c.init();
         }
-        for (CountryEvent e : events) {
+        for (BaseEvent e : events) {
             if (e.shouldFire(player)) {
                 e.effect(player);
             }
@@ -122,7 +122,7 @@ public final class MafiaGame {
         return countries;
     }
     
-    public ArrayList<CountryEvent> getEvents() {
+    public ArrayList<BaseEvent> getEvents() {
         return events;
     }
     
@@ -203,6 +203,7 @@ public final class MafiaGame {
      */
     public void changeEventChance(int percentLessChance) {
         //Get the current chance of fire an effect in countryevent
+        
         //Calculate difference in percent, taken that event chance can be other then 2% in newer version.
         //Set the new chance percent to the event's
     }
