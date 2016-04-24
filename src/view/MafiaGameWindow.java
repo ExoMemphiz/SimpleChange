@@ -6,6 +6,7 @@
 package view;
 
 import control.MafiaGame;
+import java.awt.Component;
 import model.Player;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -44,6 +45,7 @@ public class MafiaGameWindow extends javax.swing.JFrame {
         jSliderBuyDrugs.setValue(0);
         jSliderSellDrugs.setValue(0);
         jSliderSellDrugs.setMaximum(0);
+        jButtonRestartGame.setVisible(false);
     }
     
     /**
@@ -86,6 +88,9 @@ public class MafiaGameWindow extends javax.swing.JFrame {
         return selectedAmount;
     }
     
+    /**
+     * Updates all Model Boxes and Sliders on "Drugs" tab.
+     */
     public void updateModelBoxes() {
         jComboBoxBuyingDrugs.setModel(getBuyDrugModel());
         jComboBoxSellingDrugs.setModel(getSellDrugModel());
@@ -102,10 +107,8 @@ public class MafiaGameWindow extends javax.swing.JFrame {
         jProgressBarCurrentHP.setString(health + "/100");
         if (health == 0 || mainGame.getTurn() >= 20) {
             endGame();
-            this.dispose();
             try {
                 mainGame.EndGame();
-                mainGame = new MafiaGame();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -123,6 +126,19 @@ public class MafiaGameWindow extends javax.swing.JFrame {
         }
         JOptionPane.showMessageDialog(null, "Game Over!" + System.lineSeparator() +
                                             "You ended with $" + mainGame.getPlayer().getMoney());
+        jButtonRestartGame.setVisible(true);
+        Component[] com = jPanel1.getComponents();
+        for (int a = 0; a < com.length; a++) {
+             com[a].setEnabled(false);
+        }
+        Component[] com2 = jPanel2.getComponents();
+        for (int a = 0; a < com2.length; a++) {
+             com2[a].setEnabled(false);
+        }
+        Component[] com3 = jPanel3.getComponents();
+        for (int a = 0; a < com3.length; a++) {
+             com3[a].setEnabled(false);
+        }
     }
     
     public DefaultComboBoxModel getSellDrugModel() {
@@ -182,7 +198,7 @@ public class MafiaGameWindow extends javax.swing.JFrame {
     public void updateHighScores() {
         DefaultTableModel tModel = new DefaultTableModel();
         ArrayList<Highscore> highscores = mainGame.getHighscores(); //Get highscores
-        tModel.addColumn("Username");                       //Creates the username column in the modle
+        tModel.addColumn("Name");                       //Creates the username column in the modle
         tModel.addColumn("Scores");                         //Create the score column in the model
         tModel.setRowCount(highscores.size());      //Making the table long enugh to import varias data
         for (int i = 0; i < highscores.size(); i++) {
@@ -234,6 +250,7 @@ public class MafiaGameWindow extends javax.swing.JFrame {
         jLabelHighScoreHeadline = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableHighScore = new javax.swing.JTable();
+        jButtonRestartGame = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -382,8 +399,9 @@ public class MafiaGameWindow extends javax.swing.JFrame {
         });
         jPanel3.add(jButtonPrintAllDrugPrices, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, 200, -1));
 
-        jButtonTestHighScore.setText("Test High Score");
+        jButtonTestHighScore.setText("Update High Score");
         jButtonTestHighScore.setToolTipText("");
+        jButtonTestHighScore.setActionCommand("UpdateHighScore");
         jButtonTestHighScore.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonTestHighScoreActionPerformed(evt);
@@ -397,7 +415,7 @@ public class MafiaGameWindow extends javax.swing.JFrame {
 
         jLabelHighScoreHeadline.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabelHighScoreHeadline.setText("High Scores in the Mafia Game");
-        jPanel5.add(jLabelHighScoreHeadline, new org.netbeans.lib.awtextra.AbsoluteConstraints(165, 5, -1, -1));
+        jPanel5.add(jLabelHighScoreHeadline, new org.netbeans.lib.awtextra.AbsoluteConstraints(165, 10, -1, -1));
 
         jTableHighScore.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -426,7 +444,16 @@ public class MafiaGameWindow extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jTableHighScore);
         jTableHighScore.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
-        jPanel5.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 580, 250));
+        jPanel5.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 580, 240));
+
+        jButtonRestartGame.setText("Restart game");
+        jButtonRestartGame.setToolTipText("");
+        jButtonRestartGame.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRestartGameActionPerformed(evt);
+            }
+        });
+        jPanel5.add(jButtonRestartGame, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         jTabbedPane1.addTab("High Score", jPanel5);
 
@@ -512,12 +539,21 @@ public class MafiaGameWindow extends javax.swing.JFrame {
 
     private void jButtonTestHighScoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTestHighScoreActionPerformed
         updateHighScores();
-        
     }//GEN-LAST:event_jButtonTestHighScoreActionPerformed
+
+    private void jButtonRestartGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRestartGameActionPerformed
+        this.dispose();
+        try {
+            mainGame = new MafiaGame();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_jButtonRestartGameActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBuyDrugs;
     private javax.swing.JButton jButtonPrintAllDrugPrices;
+    private javax.swing.JButton jButtonRestartGame;
     private javax.swing.JButton jButtonSellDrugs;
     private javax.swing.JButton jButtonTestHighScore;
     private javax.swing.JButton jButtonTravel;
