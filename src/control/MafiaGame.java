@@ -43,7 +43,7 @@ public final class MafiaGame {
         initCountries();
         initEvents();
         String playerName = JOptionPane.showInputDialog("Please type your name", "firstname lastname");
-        player = new Player(playerName, 50000);
+        player = new Player(playerName, 5000);
         BaseCountry denmark = getCountry("Denmark");
         setCountry(denmark);
         MafiaGameWindow mafiaGameGui = new MafiaGameWindow(this);
