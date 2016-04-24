@@ -423,10 +423,10 @@ public class MafiaGameWindow extends javax.swing.JFrame {
         jLabel5.setToolTipText("");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 560, -1));
 
-        jLabel6.setText("Effect: 2% less chance of getting caught");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 240, -1, -1));
+        jLabel6.setText("Effect: 2% less chance of getting caught during the game");
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, -1, -1));
 
-        jLabel7.setText("Price: $10.000");
+        jLabel7.setText("Price: $20.000");
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 210, -1, -1));
 
         jTabbedPane1.addTab("Travel", jPanel2);
