@@ -5,12 +5,9 @@
  */
 package model;
 
-import model.BaseDrug;
-import model.Player;
 import java.util.ArrayList;
 import java.util.Random;
 import model.drug.*;
-import model.*;
 
 /**
  *
@@ -23,7 +20,7 @@ public abstract class BaseCountry {
     Random r;
     private int healthPrice = 5000;
     
-    public void init() {
+    public final void init() {
         r = new Random();
         if (drugs == null) {
             drugs = new ArrayList<>();

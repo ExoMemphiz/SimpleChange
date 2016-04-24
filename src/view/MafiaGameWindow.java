@@ -6,14 +6,12 @@
 package view;
 
 import control.MafiaGame;
-import java.awt.Component;
 import model.Player;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.table.DefaultTableModel;
 import model.Highscore;
 import model.BaseCountry;
@@ -31,21 +29,23 @@ public class MafiaGameWindow extends javax.swing.JFrame {
      * Creates new form TestGUI.
      * Gets the list of buying drugs and selling drugs for the first time game starts
      *
+     * @param main
      */
+    @SuppressWarnings("OverridableMethodCallInConstructor")
     public MafiaGameWindow(MafiaGame main) {
         this.mainGame = main;
         initComponents();
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (Exception ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
             ex.printStackTrace();
         }
-        setVisible(true);
         updateModelBoxes();
         jSliderBuyDrugs.setValue(0);
         jSliderSellDrugs.setValue(0);
         jSliderSellDrugs.setMaximum(0);
         jButtonRestartGame.setVisible(false);
+        this.setVisible(true);
     }
     
     /**

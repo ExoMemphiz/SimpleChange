@@ -10,18 +10,13 @@ import model.BaseCountry;
 import model.BaseDrug;
 import java.util.ArrayList;
 import model.country.*;
-import model.drug.*;
 import model.event.*;
 import model.*;
 import view.MafiaGameWindow;
-import control.*;
 import java.io.IOException;
 import java.util.Collections;
-import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.ComboBoxModel;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -29,7 +24,7 @@ import javax.swing.JOptionPane;
  * 
  * @author CHRIS
  */
-public class MafiaGame {
+public final class MafiaGame {
     
     private Player player;
     private int currentTurn = 0;
@@ -159,9 +154,10 @@ public class MafiaGame {
 
     /**
      * Buys the drug from the country to the player, if the player can afford it.
-     * @param selectedBuyingDrugName
-     * @param selectedBuyingDrugAmount
-     * @return String status of buying result
+     * @param drugName
+     * @param drugAmount
+     * @param price
+     * @throws java.lang.Exception
      */
     public void buyDrug(String drugName, int drugAmount, int price) throws Exception {
         currentCountry.buyDrug(drugName, drugAmount, player.getMoney());
@@ -188,6 +184,7 @@ public class MafiaGame {
      * To do Life HP change with exceptions for not enough money.
      * 
      * @param lifeBought 
+     * @return true if player had enough money to buy the life, otherwise returns false
      */
     public boolean buyLife(int lifeBought) {
         int lifeCost = lifeBought * getCurrentCountry().getHealthPrice();   //check afford

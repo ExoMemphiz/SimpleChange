@@ -24,13 +24,13 @@ public class FileHandler {
         ArrayList<String> readList = new ArrayList();
         try {
             FileReader fr = new FileReader(f);
-            BufferedReader br = new BufferedReader(fr);
-            String newline = "";
-            br.readLine();
-            while ((newline = br.readLine()) != null) {
-                readList.add( newline );
+            try (BufferedReader br = new BufferedReader(fr)) {
+                String newline;
+                br.readLine();
+                while ((newline = br.readLine()) != null) {
+                    readList.add( newline );
+                }
             }
-            br.close();
         } catch (IOException ioe) {
             System.out.println( ioe.getMessage() );
         }        
@@ -41,12 +41,12 @@ public class FileHandler {
         File f = new File(path);
         try {
             FileWriter fw = new FileWriter(f.getName());
-            BufferedWriter bw = new BufferedWriter(fw);
-            for (String string : data) {
-                bw.write(string);
-                bw.newLine();
+            try (BufferedWriter bw = new BufferedWriter(fw)) {
+                for (String string : data) {
+                    bw.write(string);
+                    bw.newLine();
+                }
             }
-            bw.close();
         } catch (IOException ioe) {
             System.out.println(ioe.getMessage());
         }

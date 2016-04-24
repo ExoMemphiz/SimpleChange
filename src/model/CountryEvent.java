@@ -6,7 +6,6 @@
 package model;
 
 import java.util.Random;
-import model.Player;
 
 /**
  *
@@ -20,6 +19,7 @@ public class CountryEvent {
 
     /**
      * Default chance is 5%, override if other percentage is needed
+     * @param player The player of whom it will check for effect trigger/changes
      * @return 
      */
     public boolean shouldFire(Player player) {

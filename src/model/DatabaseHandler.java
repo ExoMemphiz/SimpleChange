@@ -29,7 +29,7 @@ public class DatabaseHandler {
         conn.setDoInput(true);
         System.out.println(submit.toString());
         BufferedReader in = new BufferedReader(new InputStreamReader(submit.openStream()));
-        String line = null;
+        String line;
         while ((line = in.readLine()) != null) {
             System.out.println(line);
         }

@@ -6,7 +6,6 @@
 package model.event;
 
 import model.CountryEvent;
-import java.util.Random;
 import javax.swing.JOptionPane;
 import model.Player;
 import model.BaseDrug;

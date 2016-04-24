@@ -16,7 +16,7 @@ public class Player {
     private int currentTurn = 0;
     private final String name;
     private int money, health;
-    private ArrayList<BaseDrug> drugs;
+    private final ArrayList<BaseDrug> drugs;
 
     public Player(String name, int money) {
         this.name = name;
