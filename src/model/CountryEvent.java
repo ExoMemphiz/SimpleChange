@@ -3,19 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model.event;
+package model;
 
 import java.util.Random;
-import model.EventInterface;
 import model.Player;
 
 /**
  *
  * @author scheldejonas
  */
-public class CountryEvent implements EventInterface {
+public class CountryEvent {
 
-    @Override
     public void effect(Player player) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -24,7 +22,6 @@ public class CountryEvent implements EventInterface {
      * Default chance is 5%, override if other percentage is needed
      * @return 
      */
-    @Override
     public boolean shouldFire(Player player) {
         Random r = new Random();
         int random = r.nextInt(100);

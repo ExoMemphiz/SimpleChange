@@ -5,6 +5,7 @@
  */
 package control;
 
+import model.CountryEvent;
 import model.BaseCountry;
 import model.BaseDrug;
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ import view.MafiaGameWindow;
 import control.*;
 import java.io.IOException;
 import java.util.Collections;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ComboBoxModel;
