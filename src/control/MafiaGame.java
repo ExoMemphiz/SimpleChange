@@ -198,14 +198,35 @@ public final class MafiaGame {
     }
 
     /**
-     * 
+     * Changes the chance of an event happening, while traveling between country's permanently for the rest of the game time.
      * @param percentLessChance 
      */
     public void changeEventChance(int percentLessChance) {
-        //Get the current chance of fire an effect in countryevent
         
-        //Calculate difference in percent, taken that event chance can be other then 2% in newer version.
-        //Set the new chance percent to the event's
+        for (BaseEvent e : events) {
+            int currentChance = e.getFirePercentage(); //Get the current chance of fire an effect in BaseEvent
+            int newPercentChance = currentChance - percentLessChance; //Calculate the new percentChance for shouldFire method's
+            if ( newPercentChance > 2 ) {
+                e.setFirePercentage( newPercentChance ); //Set the new chance percent to the event's
+            }
+            System.out.println("Event: " + e.toString() + "FirePercent: " + e.getFirePercentage() ); //TEST
+        }
+        
+    }
+
+    /**
+     * Buy the highfriends that changes the event chance of getting caught during travel.
+     * @param highFriendPrice
+     * @param highFriendPercentDecrease
+     * @return 
+     */
+    public boolean buyHighFriend(int highFriendPrice, int highFriendPercentDecrease) {
+        if ( player.getMoney() > highFriendPrice ) { //Check if player can afford it.
+            player.removeMoney(highFriendPrice); //Pay from players wallet.
+            changeEventChance(highFriendPercentDecrease); //Make events work with less
+            return true;
+        }
+        return false;
     }
     
 }

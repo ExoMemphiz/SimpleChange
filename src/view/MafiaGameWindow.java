@@ -250,7 +250,7 @@ public class MafiaGameWindow extends javax.swing.JFrame {
         jComboBoxCountries = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         jButtonTravel = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        jButtonHighFriendYakuza = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -414,13 +414,13 @@ public class MafiaGameWindow extends javax.swing.JFrame {
         });
         jPanel2.add(jButtonTravel, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 90, 90, -1));
 
-        jButton1.setText("Buy Access into Yakuza");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonHighFriendYakuza.setText("Buy Access into Yakuza");
+        jButtonHighFriendYakuza.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonHighFriendYakuzaActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, -1, -1));
+        jPanel2.add(jButtonHighFriendYakuza, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -617,14 +617,17 @@ public class MafiaGameWindow extends javax.swing.JFrame {
         updateModelBoxes();
     }//GEN-LAST:event_jButtonBuyLifeActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        mainGame.changeEventChance(2); //2% change needs to be removed from shouldfire method in Country events.
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void jButtonHighFriendYakuzaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHighFriendYakuzaActionPerformed
+        if (!mainGame.buyHighFriend(20000,2)) { //2% change needs to be removed from shouldfire method in Country events, for the price of 20.000 dollars.
+            JOptionPane.showMessageDialog(this, "Not enough money to buy your way into Yakuza, for less chance of getting caught.");
+        }
+        updateModelBoxes();
+    }//GEN-LAST:event_jButtonHighFriendYakuzaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonBuyDrugs;
     private javax.swing.JButton jButtonBuyLife;
+    private javax.swing.JButton jButtonHighFriendYakuza;
     private javax.swing.JButton jButtonPrintAllDrugPrices;
     private javax.swing.JButton jButtonRestartGame;
     private javax.swing.JButton jButtonSellDrugs;
