@@ -99,6 +99,14 @@ public class MafiaGameWindow extends javax.swing.JFrame {
         jSliderSellDrugs.setMaximum(amount);
         amount = mainGame.getCurrentCountry().getDrug(getSelectedBuyingDrugName()).getAmount();
         jSliderBuyDrugs.setMaximum(amount);
+        int healSlider = 100 - mainGame.getPlayer().getHealth();
+        int minorTicks = healSlider / 20;
+        int majorTicks = healSlider / 10;
+        jSliderBuyLife.setMaximum(healSlider);
+        jSliderBuyLife.setMinorTickSpacing(minorTicks);
+        jSliderBuyLife.setMajorTickSpacing(majorTicks);
+        int lifeCost = mainGame.getCurrentCountry().getHealthPrice();
+        jLabelLifeCost.setText("Life: $" + lifeCost + " pr. %");
         jLabelWelcomeText.setText("Welcome to " + mainGame.getCurrentCountry().getName() + "!");
         jComboBoxCountries.setModel(getTravelModel());
         jLabelCurrentTurn.setText("Current turn: " + mainGame.getTurn());
@@ -109,6 +117,7 @@ public class MafiaGameWindow extends javax.swing.JFrame {
             endGame();
             try {
                 mainGame.EndGame();
+                DisplayEnd();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -124,13 +133,17 @@ public class MafiaGameWindow extends javax.swing.JFrame {
                 ex.printStackTrace();
             }
         }
+    }
+    
+    public void DisplayEnd() {
         JOptionPane.showMessageDialog(null, "Game Over!" + System.lineSeparator() +
                                             "You ended with $" + mainGame.getPlayer().getMoney());
-        jButtonRestartGame.setVisible(true);
-        jTabbedPane1.setSelectedIndex(3);
         jTabbedPane1.setEnabledAt(0, false);
         jTabbedPane1.setEnabledAt(1, false);
         jTabbedPane1.setEnabledAt(2, false);
+        mainGame.readHighscoresFromDatabase();
+        jButtonRestartGame.setVisible(true);
+        jTabbedPane1.setSelectedIndex(3);
     }
     
     public DefaultComboBoxModel getSellDrugModel() {
@@ -231,7 +244,7 @@ public class MafiaGameWindow extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButtonBuyLife = new javax.swing.JButton();
         jSliderBuyLife = new javax.swing.JSlider();
-        jLabel5 = new javax.swing.JLabel();
+        jLabelLifeCost = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jComboBoxCountries = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
@@ -361,13 +374,11 @@ public class MafiaGameWindow extends javax.swing.JFrame {
         });
         jPanel1.add(jButtonBuyLife, new org.netbeans.lib.awtextra.AbsoluteConstraints(295, 250, 140, -1));
 
-        jSliderBuyLife.setMajorTickSpacing(50);
-        jSliderBuyLife.setMaximum(90);
-        jSliderBuyLife.setMinimum(10);
+        jSliderBuyLife.setMajorTickSpacing(20);
         jSliderBuyLife.setMinorTickSpacing(10);
         jSliderBuyLife.setPaintLabels(true);
         jSliderBuyLife.setPaintTicks(true);
-        jSliderBuyLife.setValue(10);
+        jSliderBuyLife.setValue(0);
         jSliderBuyLife.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jSliderBuyLifeStateChanged(evt);
@@ -375,8 +386,8 @@ public class MafiaGameWindow extends javax.swing.JFrame {
         });
         jPanel1.add(jSliderBuyLife, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 250, 130, -1));
 
-        jLabel5.setText("Life: $5000 pr. %");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 280, 120, -1));
+        jLabelLifeCost.setText("Life: $5000 pr. %");
+        jPanel1.add(jLabelLifeCost, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 280, 120, -1));
 
         jTabbedPane1.addTab("Drugs", jPanel1);
         jPanel1.getAccessibleContext().setAccessibleName("");
@@ -574,7 +585,11 @@ public class MafiaGameWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jSliderBuyLifeStateChanged
 
     private void jButtonBuyLifeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuyLifeActionPerformed
-        mainGame.buyLife( jSliderBuyLife.getValue() );
+        int healthAmount = jSliderBuyLife.getValue();
+        if (!mainGame.buyLife(healthAmount)) {
+            JOptionPane.showMessageDialog(this, "Not enough money to buy " + healthAmount + "% health!");
+        }
+        updateModelBoxes();
     }//GEN-LAST:event_jButtonBuyLifeActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -593,10 +608,10 @@ public class MafiaGameWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabelCurrentMoney;
     private javax.swing.JLabel jLabelCurrentTurn;
     private javax.swing.JLabel jLabelHighScoreHeadline;
+    private javax.swing.JLabel jLabelLifeCost;
     private javax.swing.JLabel jLabelWelcomeText;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

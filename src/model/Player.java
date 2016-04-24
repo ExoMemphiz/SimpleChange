@@ -53,7 +53,11 @@ public class Player {
     
     public void buyDrug(BaseDrug drug, int price) {
         addDrug(drug);
-        money -= price * drug.getAmount();
+        removeMoney(price * drug.getAmount());
+    }
+    
+    public void removeMoney(int amount) {
+        this.money -= amount;
     }
     
     public void addDrug(BaseDrug drug) {

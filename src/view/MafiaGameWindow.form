@@ -288,13 +288,11 @@
             </Component>
             <Component class="javax.swing.JSlider" name="jSliderBuyLife">
               <Properties>
-                <Property name="majorTickSpacing" type="int" value="50"/>
-                <Property name="maximum" type="int" value="90"/>
-                <Property name="minimum" type="int" value="10"/>
+                <Property name="majorTickSpacing" type="int" value="20"/>
                 <Property name="minorTickSpacing" type="int" value="10"/>
                 <Property name="paintLabels" type="boolean" value="true"/>
                 <Property name="paintTicks" type="boolean" value="true"/>
-                <Property name="value" type="int" value="10"/>
+                <Property name="value" type="int" value="0"/>
               </Properties>
               <Events>
                 <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jSliderBuyLifeStateChanged"/>
@@ -305,7 +303,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel5">
+            <Component class="javax.swing.JLabel" name="jLabelLifeCost">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Life: $5000 pr. %"/>
               </Properties>

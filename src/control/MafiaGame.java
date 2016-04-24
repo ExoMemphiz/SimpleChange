@@ -38,8 +38,8 @@ public class MafiaGame {
         MafiaGame main = new MafiaGame();
     }
 
-    public MafiaGame() throws IOException {
-        highscore = DatabaseHandler.read();
+    public MafiaGame() {
+        readHighscoresFromDatabase();
         printHighscore();
         initCountries();
         initEvents();
@@ -48,6 +48,14 @@ public class MafiaGame {
         BaseCountry denmark = getCountry("Denmark");
         setCountry(denmark);
         MafiaGameWindow mafiaGameGui = new MafiaGameWindow(this);
+    }
+    
+    public void readHighscoresFromDatabase() {
+        try {
+            highscore = DatabaseHandler.read();
+        } catch (IOException ex) {
+            Logger.getLogger(MafiaGame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public void EndGame() throws IOException {
@@ -177,15 +185,14 @@ public class MafiaGame {
      * 
      * @param lifeBought 
      */
-    public void buyLife(int lifeBought) {
+    public boolean buyLife(int lifeBought) {
         int lifeCost = lifeBought * getCurrentCountry().getHealthPrice();   //check afford
-        int currentWallet = player.getMoney();
-        if ( currentWallet >= lifeCost ) { //if afford - do buying
-            player.healDamage( lifeBought );
+        if (player.getMoney() >= lifeCost) { //if afford - do buying
+            player.removeMoney(lifeCost);
+            player.healDamage(lifeBought);
+            return true;
         }
-        else if ( currentWallet < lifeCost ) { //if not afford - exception throwed
-            throws new Exception("You don't have enough money to buy this amount of life.");
-        }
+        return false;
     }
     
 }
