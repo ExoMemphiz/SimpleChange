@@ -235,10 +235,12 @@ public class MafiaGameWindow extends javax.swing.JFrame {
         jSliderBuyDrugs = new javax.swing.JSlider();
         jSliderSellDrugs = new javax.swing.JSlider();
         jButtonSellDrugs = new javax.swing.JButton();
-        jButtonUpdatePlayerInventoryTest = new javax.swing.JButton();
         jLabelCurrentTurn = new javax.swing.JLabel();
         jProgressBarCurrentHP = new javax.swing.JProgressBar();
         jLabel1 = new javax.swing.JLabel();
+        jButtonBuyLife = new javax.swing.JButton();
+        jSliderBuyLife = new javax.swing.JSlider();
+        jLabel5 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jComboBoxCountries = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
@@ -246,6 +248,7 @@ public class MafiaGameWindow extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jButtonPrintAllDrugPrices = new javax.swing.JButton();
         jButtonTestHighScore = new javax.swing.JButton();
+        jButtonUpdatePlayerInventoryTest = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabelHighScoreHeadline = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -343,14 +346,6 @@ public class MafiaGameWindow extends javax.swing.JFrame {
         });
         jPanel1.add(jButtonSellDrugs, new org.netbeans.lib.awtextra.AbsoluteConstraints(296, 210, 270, -1));
 
-        jButtonUpdatePlayerInventoryTest.setText("Force Update Models");
-        jButtonUpdatePlayerInventoryTest.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonUpdatePlayerInventoryTestActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButtonUpdatePlayerInventoryTest, new org.netbeans.lib.awtextra.AbsoluteConstraints(296, 260, 270, -1));
-
         jLabelCurrentTurn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelCurrentTurn.setText("Current turn: ");
         jPanel1.add(jLabelCurrentTurn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 260, -1));
@@ -366,6 +361,31 @@ public class MafiaGameWindow extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Current HP");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 245, 260, -1));
+
+        jButtonBuyLife.setText("Buy life (10)");
+        jButtonBuyLife.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBuyLifeActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButtonBuyLife, new org.netbeans.lib.awtextra.AbsoluteConstraints(295, 250, 140, -1));
+
+        jSliderBuyLife.setMajorTickSpacing(50);
+        jSliderBuyLife.setMaximum(90);
+        jSliderBuyLife.setMinimum(10);
+        jSliderBuyLife.setMinorTickSpacing(10);
+        jSliderBuyLife.setPaintLabels(true);
+        jSliderBuyLife.setPaintTicks(true);
+        jSliderBuyLife.setValue(10);
+        jSliderBuyLife.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSliderBuyLifeStateChanged(evt);
+            }
+        });
+        jPanel1.add(jSliderBuyLife, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 250, 130, -1));
+
+        jLabel5.setText("Life: $5000 pr. %");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 280, 120, -1));
 
         jTabbedPane1.addTab("Drugs", jPanel1);
         jPanel1.getAccessibleContext().setAccessibleName("");
@@ -399,7 +419,7 @@ public class MafiaGameWindow extends javax.swing.JFrame {
         });
         jPanel3.add(jButtonPrintAllDrugPrices, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, 200, -1));
 
-        jButtonTestHighScore.setText("Update High Score");
+        jButtonTestHighScore.setText("Force Update High Score");
         jButtonTestHighScore.setToolTipText("");
         jButtonTestHighScore.setActionCommand("UpdateHighScore");
         jButtonTestHighScore.addActionListener(new java.awt.event.ActionListener() {
@@ -407,7 +427,15 @@ public class MafiaGameWindow extends javax.swing.JFrame {
                 jButtonTestHighScoreActionPerformed(evt);
             }
         });
-        jPanel3.add(jButtonTestHighScore, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 200, -1));
+        jPanel3.add(jButtonTestHighScore, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 50, 270, -1));
+
+        jButtonUpdatePlayerInventoryTest.setText("Force Update Models");
+        jButtonUpdatePlayerInventoryTest.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonUpdatePlayerInventoryTestActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButtonUpdatePlayerInventoryTest, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, 270, -1));
 
         jTabbedPane1.addTab("Extra", jPanel3);
 
@@ -457,7 +485,7 @@ public class MafiaGameWindow extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("High Score", jPanel5);
 
-        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 620, 350));
+        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 600, 350));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -550,8 +578,17 @@ public class MafiaGameWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonRestartGameActionPerformed
 
+    private void jSliderBuyLifeStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSliderBuyLifeStateChanged
+        jButtonBuyLife.setText("Buy life (" + jSliderBuyLife.getValue() + ")");
+    }//GEN-LAST:event_jSliderBuyLifeStateChanged
+
+    private void jButtonBuyLifeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuyLifeActionPerformed
+        mainGame.buyLife( jSliderBuyLife.getValue() );
+    }//GEN-LAST:event_jButtonBuyLifeActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBuyDrugs;
+    private javax.swing.JButton jButtonBuyLife;
     private javax.swing.JButton jButtonPrintAllDrugPrices;
     private javax.swing.JButton jButtonRestartGame;
     private javax.swing.JButton jButtonSellDrugs;
@@ -565,6 +602,7 @@ public class MafiaGameWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabelCurrentMoney;
     private javax.swing.JLabel jLabelCurrentTurn;
     private javax.swing.JLabel jLabelHighScoreHeadline;
@@ -578,6 +616,7 @@ public class MafiaGameWindow extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSlider jSliderBuyDrugs;
+    private javax.swing.JSlider jSliderBuyLife;
     private javax.swing.JSlider jSliderSellDrugs;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;

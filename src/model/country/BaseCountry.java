@@ -20,6 +20,7 @@ public abstract class BaseCountry implements CountryInterface  {
     Player player;
     ArrayList<BaseDrug> drugs;
     Random r;
+    private int healthPrice = 5000;
     
     public void init() {
         r = new Random();
@@ -42,6 +43,14 @@ public abstract class BaseCountry implements CountryInterface  {
             rollPrices();
             rollStock();
         }
+    }
+
+    public int getHealthPrice() {
+        return healthPrice;
+    }
+
+    public void setHealthPrice(int healthPrice) {
+        this.healthPrice = healthPrice;
     }
     
     public abstract String getName();
@@ -106,6 +115,18 @@ public abstract class BaseCountry implements CountryInterface  {
         return 0;
     }
     
+    public void rollHealthPrice() {
+        int randomNumber = r.nextInt(100);
+        if (randomNumber <= 65) { //There is a 65% chance to change the price of the health
+            boolean increasePrice = r.nextBoolean();
+            int priceChange = r.nextInt(85) + 1; 
+            int currentPrice = getHealthPrice();
+            int priceDifference = (currentPrice * priceChange) / 100;   //Find price difference
+            int newPrice = currentPrice + (increasePrice ? priceDifference : -priceDifference);
+            setHealthPrice(newPrice);
+        }
+    }
+    
     public void rollPrices() {
         for (int i = 0; i < drugs.size(); i++) {
             BaseDrug d = drugs.get(i);
@@ -124,6 +145,7 @@ public abstract class BaseCountry implements CountryInterface  {
                 */
             }
         }
+        rollHealthPrice();
     }
     
     public void rollStock() {
