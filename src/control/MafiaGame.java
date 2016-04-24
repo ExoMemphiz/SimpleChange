@@ -43,7 +43,7 @@ public final class MafiaGame {
         initCountries();
         initEvents();
         String playerName = JOptionPane.showInputDialog("Please type your name", "firstname lastname");
-        player = new Player(playerName, 5000);
+        player = new Player(playerName, 50000);
         BaseCountry denmark = getCountry("Denmark");
         setCountry(denmark);
         MafiaGameWindow mafiaGameGui = new MafiaGameWindow(this);
@@ -209,7 +209,7 @@ public final class MafiaGame {
             if ( newPercentChance > 2 ) {
                 e.setFirePercentage( newPercentChance ); //Set the new chance percent to the event's
             }
-            System.out.println("Event: " + e.toString() + "FirePercent: " + e.getFirePercentage() ); //TEST
+            //System.out.println("Event: " + e.toString() + "FirePercent: " + e.getFirePercentage() ); //TEST
         }
         
     }
@@ -218,7 +218,7 @@ public final class MafiaGame {
      * Buy the highfriends that changes the event chance of getting caught during travel.
      * @param highFriendPrice
      * @param highFriendPercentDecrease
-     * @return 
+     * @return true or false depending on player's deep enough pockets.
      */
     public boolean buyHighFriend(int highFriendPrice, int highFriendPercentDecrease) {
         if ( player.getMoney() > highFriendPrice ) { //Check if player can afford it.

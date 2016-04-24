@@ -8,8 +8,10 @@ package view;
 import control.MafiaGame;
 import model.Player;
 import java.util.ArrayList;
+import javafx.scene.paint.Color;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import static javax.swing.SwingConstants.CENTER;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.table.DefaultTableModel;
@@ -252,8 +254,8 @@ public class MafiaGameWindow extends javax.swing.JFrame {
         jButtonTravel = new javax.swing.JButton();
         jButtonHighFriendYakuza = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        jLabelYakuzaTerms = new javax.swing.JLabel();
+        jLabelYakuzaPrice = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jButtonPrintAllDrugPrices = new javax.swing.JButton();
         jButtonTestHighScore = new javax.swing.JButton();
@@ -420,19 +422,21 @@ public class MafiaGameWindow extends javax.swing.JFrame {
                 jButtonHighFriendYakuzaActionPerformed(evt);
             }
         });
-        jPanel2.add(jButtonHighFriendYakuza, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, -1, -1));
+        jPanel2.add(jButtonHighFriendYakuza, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Travel by High Friends");
         jLabel5.setToolTipText("");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 560, -1));
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 580, -1));
 
-        jLabel6.setText("Effect: 2% less chance of getting caught during the game");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, -1, -1));
+        jLabelYakuzaTerms.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelYakuzaTerms.setText("Effect: 2% less chance of getting caught during the game");
+        jPanel2.add(jLabelYakuzaTerms, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 580, 40));
 
-        jLabel7.setText("Price: $20.000");
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 210, -1, -1));
+        jLabelYakuzaPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelYakuzaPrice.setText("Price: $20.000");
+        jPanel2.add(jLabelYakuzaPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 580, -1));
 
         jTabbedPane1.addTab("Travel", jPanel2);
 
@@ -619,7 +623,13 @@ public class MafiaGameWindow extends javax.swing.JFrame {
 
     private void jButtonHighFriendYakuzaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHighFriendYakuzaActionPerformed
         if (!mainGame.buyHighFriend(20000,2)) { //2% change needs to be removed from shouldfire method in Country events, for the price of 20.000 dollars.
-            JOptionPane.showMessageDialog(this, "Not enough money to buy your way into Yakuza, for less chance of getting caught.");
+            JOptionPane.showMessageDialog(this, "Not enough money to buy your way into Yakuza.");
+        }
+        else {
+            jButtonHighFriendYakuza.setEnabled(false);
+            jLabelYakuzaPrice.setEnabled(false);
+            jLabelYakuzaTerms.setText("You bought your way into Yakuza, and they are protecting you on every travel.");
+            jLabelYakuzaTerms.setForeground(java.awt.Color.red);
         }
         updateModelBoxes();
     }//GEN-LAST:event_jButtonHighFriendYakuzaActionPerformed
@@ -642,13 +652,13 @@ public class MafiaGameWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabelCurrentMoney;
     private javax.swing.JLabel jLabelCurrentTurn;
     private javax.swing.JLabel jLabelHighScoreHeadline;
     private javax.swing.JLabel jLabelLifeCost;
     private javax.swing.JLabel jLabelWelcomeText;
+    private javax.swing.JLabel jLabelYakuzaPrice;
+    private javax.swing.JLabel jLabelYakuzaTerms;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
