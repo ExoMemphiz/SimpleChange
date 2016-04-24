@@ -127,18 +127,10 @@ public class MafiaGameWindow extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Game Over!" + System.lineSeparator() +
                                             "You ended with $" + mainGame.getPlayer().getMoney());
         jButtonRestartGame.setVisible(true);
-        Component[] com = jPanel1.getComponents();
-        for (int a = 0; a < com.length; a++) {
-             com[a].setEnabled(false);
-        }
-        Component[] com2 = jPanel2.getComponents();
-        for (int a = 0; a < com2.length; a++) {
-             com2[a].setEnabled(false);
-        }
-        Component[] com3 = jPanel3.getComponents();
-        for (int a = 0; a < com3.length; a++) {
-             com3[a].setEnabled(false);
-        }
+        jTabbedPane1.setSelectedIndex(3);
+        jTabbedPane1.setEnabledAt(0, false);
+        jTabbedPane1.setEnabledAt(1, false);
+        jTabbedPane1.setEnabledAt(2, false);
     }
     
     public DefaultComboBoxModel getSellDrugModel() {
@@ -180,7 +172,6 @@ public class MafiaGameWindow extends javax.swing.JFrame {
         DefaultComboBoxModel model = new DefaultComboBoxModel();
         model.removeAllElements();
         BaseCountry country = mainGame.getCurrentCountry();
-        System.out.println("[getTravelModel]: " + country.getName());
         ArrayList<BaseCountry> countries = mainGame.getCountries();
         for (int i = 0; i < countries.size(); i++) {
             BaseCountry c = countries.get(i);
