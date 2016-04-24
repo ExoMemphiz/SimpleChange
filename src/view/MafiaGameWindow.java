@@ -415,6 +415,11 @@ public class MafiaGameWindow extends javax.swing.JFrame {
         jPanel2.add(jButtonTravel, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 90, 90, -1));
 
         jButton1.setText("Buy Access into Yakuza");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
@@ -611,6 +616,10 @@ public class MafiaGameWindow extends javax.swing.JFrame {
         }
         updateModelBoxes();
     }//GEN-LAST:event_jButtonBuyLifeActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        mainGame.changeEventChance(2); //2% change needs to be removed from shouldfire method in Country events.
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

@@ -181,10 +181,11 @@ public final class MafiaGame {
     }
 
     /**
-     * To do Life HP change with exceptions for not enough money.
+     * Buy's life to the player, by first calculationg the cost of the life, based on life price changes from each country travel.
+     * After that removes money from the player's wallet, and heals the player's life, with the bought hp percentages.
      * 
      * @param lifeBought 
-     * @return true if player had enough money to buy the life, otherwise returns false
+     * @return true if player had enough money to buy the life, otherwise returns false for displaying insufficient funds message
      */
     public boolean buyLife(int lifeBought) {
         int lifeCost = lifeBought * getCurrentCountry().getHealthPrice();   //check afford
@@ -194,6 +195,16 @@ public final class MafiaGame {
             return true;
         }
         return false;
+    }
+
+    /**
+     * 
+     * @param percentLessChance 
+     */
+    public void changeEventChance(int percentLessChance) {
+        //Get the current chance of fire an effect in countryevent
+        //Calculate difference in percent, taken that event chance can be other then 2% in newer version.
+        //Set the new chance percent to the event's
     }
     
 }
