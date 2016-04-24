@@ -5,6 +5,8 @@
  */
 package control;
 
+import model.BaseCountry;
+import model.BaseDrug;
 import java.util.ArrayList;
 import model.country.*;
 import model.drug.*;

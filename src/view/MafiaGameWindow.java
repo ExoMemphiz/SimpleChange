@@ -16,8 +16,8 @@ import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 import model.Highscore;
-import model.country.BaseCountry;
-import model.drug.BaseDrug;
+import model.BaseCountry;
+import model.BaseDrug;
 
 /**
  *

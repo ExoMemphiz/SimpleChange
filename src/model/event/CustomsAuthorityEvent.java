@@ -7,9 +7,9 @@ package model.event;
 
 import java.util.Random;
 import javax.swing.JOptionPane;
-import model.DrugInterface;
 import model.EventInterface;
 import model.Player;
+import model.BaseDrug;
 
 /**
  *
@@ -19,7 +19,7 @@ public class CustomsAuthorityEvent extends CountryEvent {
 
     @Override
     public void effect(Player player) {
-        for (DrugInterface d : player.getDrugs()) {
+        for (BaseDrug d : player.getDrugs()) {
             if (d.getAmount() > 0) {
                 int confiscated = d.getAmount() / 2;
                 if (d.getAmount() % 2 == 1) {

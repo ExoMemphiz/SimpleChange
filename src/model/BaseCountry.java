@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model.country;
+package model;
 
+import model.BaseDrug;
 import model.Player;
 import java.util.ArrayList;
 import java.util.Random;
@@ -15,7 +16,7 @@ import model.*;
  *
  * @author scheldejonas
  */
-public abstract class BaseCountry implements CountryInterface  {
+public abstract class BaseCountry {
     
     Player player;
     ArrayList<BaseDrug> drugs;

@@ -5,7 +5,7 @@
  */
 package model.drug;
 
-import model.DrugInterface;
+import model.BaseDrug;
 
 /**
  *

@@ -3,15 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model.drug;
+package model;
 
-import model.DrugInterface;
+import model.drug.Acid;
+import model.drug.Amphetamine;
+import model.drug.AngelDust;
+import model.drug.Cocaine;
+import model.drug.CrystalMeth;
+import model.drug.Heroin;
 
 /**
  *
  * @author scheldejonas
  */
-public class BaseDrug implements DrugInterface {
+public class BaseDrug {
     
     int price;
     int amount;
@@ -40,37 +45,30 @@ public class BaseDrug implements DrugInterface {
     }
     
     
-    @Override
     public int getPrice() {
         return price;
     }
 
-    @Override
     public void setPrice(int price) {
         this.price = price;
     }
     
-    @Override
     public int getAmount() {
         return amount;
     }
         
-    @Override
     public void remove(int amount) {
         this.amount -= amount;
     }
         
-    @Override
     public void add(int amount) {
         this.amount += amount;
     }
     
-    @Override
     public void setAmount(int newAmount) {
         this.amount = newAmount;
     }
 
-    @Override
     public String getName() {
         return "null";
     }

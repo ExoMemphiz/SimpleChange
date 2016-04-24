@@ -6,7 +6,6 @@
 package model;
 
 import java.util.ArrayList;
-import model.drug.BaseDrug;
 
 /**
  *
